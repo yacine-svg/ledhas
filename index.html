@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#a3401f">
+<meta property="og:title" content="Ledhas · Gîte à Timimoun">
+<meta property="og:description" content="Onze grandes chambres à Massine, Timimoun. Quad dans les dunes, évasions thématiques, team building et soirées musicales.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/img/quad-coucher.jpg">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Ledhas · Gîte à Timimoun</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23a3401f'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23f3dcc0'/%3E%3Cpath d='M5 20c4-3 8-3 11-1 3-2 7-2 11 1v8H5z' fill='%23a3401f'/%3E%3Cpath d='M16 7.5l1 2.4 2.5.2-1.9 1.6.6 2.4-2.2-1.3-2.2 1.3.6-2.4-1.9-1.6 2.5-.2z' fill='%23a3401f'/%3E%3C/svg%3E">
+<meta name="description" content="Ledhas, gîte à Massine, Timimoun. Onze grandes chambres, petit-déjeuner inclus, découvertes du désert, évasions thématiques, team building et soirées musicales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=Reem+Kufi:wght@500;700&display=swap">
+<style>
+/* Layout: a procedural Timimoun sky fixed behind wide, left-weighted full-bleed bands; scrolling moves the day from dawn to night */
+:root{
+  --ink:#24110a;
+  --ink-2:rgba(36,17,10,.74);
+  --line:rgba(36,17,10,.2);
+  --panel:rgba(255,246,232,.46);
+  --panel-strong:rgba(255,246,232,.74);
+  --clay:#a3401f;
+  --clay-ink:#fff6ea;
+  --field:rgba(255,250,242,.66);
+  --display:"Gloock","Times New Roman",Georgia,serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --arabic:"Reem Kufi","Noto Kufi Arabic","Geeza Pro",Tahoma,sans-serif;
+  --gutter:clamp(16px,4.2vw,64px);
+  color-scheme:light;
+}
+:root.is-night{
+  --ink:#f6ecda;
+  --ink-2:rgba(246,236,218,.76);
+  --line:rgba(246,236,218,.24);
+  --panel:rgba(14,11,28,.4);
+  --panel-strong:rgba(14,11,28,.68);
+  --clay:#e27a44;
+  --clay-ink:#1c0d06;
+  --field:rgba(20,16,38,.62);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+body{
+  background:#e7997a;
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition:color .7s ease;
+}
+::selection{background:var(--clay);color:var(--clay-ink)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px;border-radius:6px}
+
+#sky{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0;pointer-events:none}
+.grain{
+  position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.1  0 0 0 0 0.05  0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+main,footer{position:relative;z-index:1}
+
+.wrap{
+  max-width:1480px;margin-inline:auto;
+  padding-left:max(var(--gutter),env(safe-area-inset-left,0px));
+  padding-right:max(var(--gutter),env(safe-area-inset-right,0px));
+}
+
+/* ---------- Nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:5;padding-top:env(safe-area-inset-top,0px)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.seal-sm{width:40px;height:40px;flex:none;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.brand:hover .seal-sm{transform:rotate(-12deg)}
+.brand b{font-family:var(--display);font-weight:400;font-size:1.6rem;letter-spacing:-.01em;line-height:1}
+.brand span{font-family:var(--arabic);font-size:1.05rem;color:var(--clay);transition:color .7s}
+.links{
+  display:flex;gap:4px;padding:5px;border-radius:999px;
+  background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  transition:background .7s,border-color .7s;
+}
+.links a{padding:8px 16px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;transition:background .25s}
+.links a:hover{background:var(--panel-strong)}
+@media (max-width:1100px){.links{display:none}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  font-family:var(--body);font-weight:600;font-size:1rem;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;transition:transform .25s ease,background .7s,color .7s,border-color .7s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:19px;height:19px;flex:none}
+.btn-wa{background:var(--clay);color:var(--clay-ink)}
+.btn-ghost{background:var(--panel);border-color:var(--line);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.btn-sm{padding:10px 16px;font-size:.92rem}
+
+/* ---------- Clock ---------- */
+.clock{
+  position:fixed;z-index:4;
+  left:max(var(--gutter),env(safe-area-inset-left,0px));
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  display:flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:999px;
+  background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;
+  transition:background .7s,border-color .7s;
+}
+.clock i{width:9px;height:9px;border-radius:50%;background:var(--clay);box-shadow:0 0 0 4px color-mix(in srgb,var(--clay) 25%,transparent);transition:background .7s}
+.clock strong{font-weight:500;font-variant-numeric:tabular-nums;font-size:.95rem}
+.clock em{font-style:normal;color:var(--ink-2);text-transform:uppercase;letter-spacing:.12em;font-size:.7rem}
+
+/* ---------- Type ---------- */
+.kicker{
+  display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ink-2);
+}
+.kicker::before{content:"";width:34px;height:1px;background:currentColor}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.5rem,5.8vw,5rem);line-height:.98;letter-spacing:-.015em;max-width:15ch}
+h3{font-size:clamp(1.5rem,2.3vw,2rem);line-height:1.08}
+p{margin:0;max-width:60ch}
+.lead{font-size:clamp(1.12rem,1.5vw,1.3rem);color:var(--ink-2);line-height:1.55}
+
+/* ---------- Hero ---------- */
+.hero{min-height:min(94svh,920px);display:grid;align-content:end}
+.hero .wrap{padding-block:clamp(130px,20vh,220px) clamp(70px,12vh,140px);display:grid;gap:22px;width:100%}
+.coords{font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:var(--ink-2)}
+.name{font-size:clamp(4.6rem,13.5vw,12.5rem);line-height:.82;letter-spacing:-.035em;margin-left:-.04em}
+.name-ar{font-family:var(--arabic);font-weight:700;font-size:clamp(2rem,5.4vw,4rem);line-height:1;color:var(--clay);transition:color .7s}
+.tagline{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.8rem);font-style:italic;line-height:1.2;color:var(--ink);margin:-6px 0 0}
+.hero-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px 48px;margin-top:8px}
+.hero-row .lead{max-width:40ch}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ---------- Bands ---------- */
+.band{padding-block:clamp(84px,12vh,150px)}
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,6vw,96px);align-items:start}
+.split > *{min-width:0}
+.stack{display:grid;gap:26px;align-content:start}
+@media (max-width:960px){.split{grid-template-columns:minmax(0,1fr)}}
+
+.facts{margin:8px 0 0;display:grid;border-top:1px solid var(--line);transition:border-color .7s}
+.facts div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;padding-block:16px;border-bottom:1px solid var(--line);align-items:baseline;transition:border-color .7s}
+.facts dt{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-2)}
+.facts dd{margin:0;font-family:var(--display);font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.15}
+
+.arches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,26px);align-items:end}
+.arch{
+  position:relative;max-width:100%;aspect-ratio:3/4.6;border-radius:999px 999px 14px 14px;overflow:hidden;
+  border:1px solid var(--line);
+  background:
+    repeating-linear-gradient(135deg,color-mix(in srgb,var(--ink) 6%,transparent) 0 1px,transparent 1px 12px),
+    linear-gradient(180deg,color-mix(in srgb,var(--clay) 48%,transparent),color-mix(in srgb,var(--clay) 10%,transparent)),
+    var(--panel);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;flex-direction:column;justify-content:space-between;padding:22% 16px 18px;
+  transition:border-color .7s;
+}
+.arch:nth-child(2){aspect-ratio:3/5.4}
+.arch small{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);text-align:center}
+.arch span{font-family:var(--display);font-size:clamp(1.1rem,1.8vw,1.5rem);line-height:1.1}
+.note{font-size:.92rem;color:var(--ink-2);margin-top:14px;display:inline-block;padding:8px 14px;border-radius:12px;background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+
+/* Discover */
+.head-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 64px;margin-bottom:clamp(40px,6vw,72px)}
+.head-row .stack{max-width:780px}
+.head-row > p{max-width:38ch}
+.grid6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);transition:border-color .7s}
+.grid6 article{padding:28px 28px 36px 0;border-bottom:1px solid var(--line);display:grid;gap:10px;align-content:start;min-width:0;transition:border-color .7s}
+.grid6 article + article{padding-left:28px}
+.grid6 article:nth-child(3n+1){padding-left:0}
+.grid6 article:not(:nth-child(3n)){border-right:1px solid var(--line)}
+.grid6 p{color:var(--ink-2)}
+.glyph{width:44px;height:44px;color:var(--clay);transition:color .7s}
+@media (max-width:900px){
+  .grid6{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid6 article,.grid6 article + article{padding:24px 20px 28px 0;border-right:none}
+  .grid6 article:nth-child(2n){padding-left:20px;border-left:1px solid var(--line)}
+}
+@media (max-width:560px){
+  .grid6{grid-template-columns:minmax(0,1fr)}
+  .grid6 article:nth-child(2n){padding-left:0;border-left:none}
+}
+
+/* Escapes */
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.card{
+  padding:clamp(26px,3.4vw,44px);border-radius:22px;background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);
+  display:grid;gap:18px;align-content:start;min-width:0;transition:background .7s,border-color .7s;
+}
+.card p{color:var(--ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:4px 0 0;list-style:none}
+.chips li{padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:.88rem;transition:border-color .7s}
+@media (max-width:760px){.duo{grid-template-columns:minmax(0,1fr)}}
+
+/* Night */
+.night-title{font-size:clamp(3.2rem,10vw,8.5rem);line-height:.9;letter-spacing:-.03em;max-width:12ch}
+.book{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(16px,2.4vw,32px);margin-top:clamp(56px,8vw,110px);align-items:start}
+@media (max-width:960px){.book{grid-template-columns:minmax(0,1fr)}}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+form .full{grid-column:1/-1}
+@media (max-width:560px){form{grid-template-columns:minmax(0,1fr)}}
+label{display:grid;gap:7px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);min-width:0}
+input,select,textarea{
+  font:inherit;font-family:var(--body);font-size:1rem;letter-spacing:0;text-transform:none;color:var(--ink);
+  background:var(--field);border:1px solid var(--line);border-radius:12px;padding:13px 14px;width:100%;min-width:0;
+  transition:border-color .2s,background .7s,color .7s;
+}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--clay)}
+.send{justify-content:center;width:100%;padding-block:17px;font-size:1.05rem}
+.info{display:grid;gap:0}
+.info div{padding-block:16px;border-bottom:1px solid var(--line);display:grid;gap:4px;transition:border-color .7s}
+.info div:first-child{padding-top:0}
+.info dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.info dd{margin:0;font-size:1.08rem}
+.num{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.num code{font-family:var(--mono);font-size:1.05rem;user-select:all}
+.copy{font:inherit;font-size:.82rem;padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.maplink{display:inline-flex;gap:8px;align-items:center;margin-top:6px;font-weight:600}
+
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:40px calc(96px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:.9rem;color:var(--ink-2);transition:border-color .7s}
+footer .foot-seal{flex-basis:100%}
+footer .foot-seal svg{width:96px;height:96px}
+footer a{text-decoration:none;font-weight:600;color:var(--ink)}
+
+/* ---------- Photos ---------- */
+.ph{
+  position:relative;overflow:hidden;max-width:100%;margin:0;
+  background:linear-gradient(160deg,color-mix(in srgb,var(--clay) 55%,transparent),color-mix(in srgb,var(--clay) 12%,transparent)),var(--panel);
+  border:1px solid var(--line);
+}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.ph img.broken{opacity:0}
+.ph figcaption{
+  position:absolute;left:14px;right:14px;bottom:12px;z-index:1;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#fff6ea;
+  text-shadow:0 1px 8px rgba(0,0,0,.55);
+}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,8,4,.55));pointer-events:none}
+
+/* Hero with arch photo */
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,5vw,80px);align-items:end}
+.hero-grid > *{min-width:0}
+.hero-text{display:grid;gap:22px}
+.hero-photo{aspect-ratio:3/4.1;border-radius:999px 999px 22px 22px;box-shadow:0 30px 80px -30px rgba(40,12,4,.55)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-photo{aspect-ratio:4/4.4;max-height:520px;width:100%}
+}
+
+/* Gîte arches now hold photos */
+.arches .ph{aspect-ratio:3/4.6;border-radius:999px 999px 14px 14px}
+.arches .ph:nth-child(2){aspect-ratio:3/5.4}
+
+.rooms{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(12px,2vw,24px);align-items:end}
+.rooms .ph{border-radius:999px 999px 16px 16px}
+.room-a{aspect-ratio:3/4.1}
+.room-b{aspect-ratio:3/4.4;margin-bottom:clamp(24px,6vw,72px)}
+.rooms .ph:hover img{transform:scale(1.04)}
+
+/* String lights over the night section */
+.garland{display:block;width:100%;height:clamp(60px,8vw,110px);margin-bottom:clamp(20px,4vw,48px);color:var(--line)}
+.garland .bulb{fill:#ffd08a;opacity:.55;transition:opacity .7s}
+:root.is-night .garland .bulb{opacity:1;filter:drop-shadow(0 0 6px #ffb14d) drop-shadow(0 0 14px rgba(255,170,70,.6));animation:glow 2.4s ease-in-out infinite}
+@keyframes glow{50%{opacity:.7}}
+
+/* Tea video */
+.tea{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,96px);align-items:center}
+.tea > *{min-width:0}
+.tea-video{aspect-ratio:478/850;max-height:78vh;border-radius:999px 999px 20px 20px;justify-self:center;width:min(100%,420px)}
+.tea-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:820px){.tea{grid-template-columns:minmax(0,1fr)}.tea-video{width:min(100%,340px)}}
+
+/* Quad section */
+.quad-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(150px,17vw,240px);gap:clamp(10px,1.4vw,18px)}
+.quad-grid .ph{border-radius:18px;padding:0;cursor:zoom-in;font:inherit;color:inherit;text-align:left}
+.quad-grid .ph:hover img{transform:scale(1.04)}
+.q-wide{grid-column:span 4;grid-row:span 2}
+.q-tall{grid-column:span 2;grid-row:span 2}
+.q-wide2{grid-column:span 3;grid-row:span 2}
+.q-small{grid-column:span 1;grid-row:span 2}
+@media (max-width:900px){
+  .quad-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,40vw,260px)}
+  .q-wide,.q-wide2{grid-column:span 2;grid-row:span 1}
+  .q-tall,.q-small{grid-column:span 1;grid-row:span 1}
+}
+
+/* Gallery of real rooms */
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(180px,22vw,300px);gap:clamp(10px,1.4vw,18px)}
+.gallery .ph{border-radius:18px;padding:0;cursor:zoom-in;font:inherit;color:inherit;text-align:left}
+.gallery .g-big{grid-column:span 2;grid-row:span 2}
+.gallery .ph:hover img{transform:scale(1.04)}
+@media (max-width:760px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:clamp(150px,44vw,240px)}.gallery .g-big{grid-row:span 1;grid-column:span 2}}
+.kilim{
+  height:18px;margin:0 0 clamp(18px,2.4vw,28px);border-radius:4px;opacity:.9;
+  background:
+    linear-gradient(135deg,var(--clay) 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(225deg,var(--clay) 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(90deg,color-mix(in srgb,var(--ink) 80%,transparent),color-mix(in srgb,var(--ink) 80%,transparent));
+}
+dialog#viewer{padding:0;border:0;background:transparent;max-width:min(92vw,900px);max-height:92vh}
+dialog#viewer::backdrop{background:rgba(10,6,4,.82)}
+dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14px}
+#viewerClose{position:absolute;top:10px;right:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1.5rem;cursor:pointer}
+
+/* Discover tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,32px) clamp(16px,2vw,28px)}
+.tile{display:grid;gap:12px;align-content:start;min-width:0}
+.tile .ph{aspect-ratio:4/4.6;border-radius:20px}
+.tile:hover .ph img{transform:scale(1.05)}
+.tile h3{margin-top:4px}
+.tile p{color:var(--ink-2)}
+@media (max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.tiles{grid-template-columns:minmax(0,1fr)}.tile .ph{aspect-ratio:4/3.4}}
+
+/* Escape cards with photo */
+.card .ph{aspect-ratio:16/9;border-radius:14px;margin-bottom:4px}
+
+/* Events */
+.events{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,26px);margin-top:clamp(40px,6vw,72px)}
+.event{
+  display:grid;grid-template-rows:auto 1fr;border-radius:22px;overflow:hidden;min-width:0;
+  background:var(--panel);border:1px solid var(--line);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:background .7s,border-color .7s;
+}
+.event .ph{aspect-ratio:16/10;border:0;border-radius:0}
+.event-body{display:grid;gap:12px;padding:22px 22px 24px;align-content:start}
+.badge{
+  justify-self:start;display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;
+  background:var(--clay);color:var(--clay-ink);font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;transition:background .7s,color .7s;
+}
+.badge::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+.event-date{font-family:var(--mono);font-size:.82rem;color:var(--ink-2)}
+.event p{color:var(--ink-2)}
+.event .btn{justify-self:start;margin-top:4px}
+@media (max-width:900px){.events{grid-template-columns:minmax(0,1fr)}.event{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);grid-template-rows:none}.event .ph{aspect-ratio:auto;min-height:100%}}
+@media (max-width:560px){.event{grid-template-columns:minmax(0,1fr)}.event .ph{aspect-ratio:16/10}}
+
+.credits{font-size:.78rem;max-width:none;flex-basis:100%}
+
+@media (max-width:640px){
+  .clock{bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:6px 12px 6px 9px}
+  .clock em{display:none}
+  .band{padding-block:clamp(80px,12vh,120px)}
+  .hero .wrap{padding-block:110px 64px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  .btn:hover{transform:none}
+}
+</style>
+
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Ledhas, retour en haut"><svg class="seal-sm" viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="nav-disc"><circle cx="32" cy="32" r="23"/></clipPath></defs><circle cx="32" cy="32" r="32" fill="var(--clay)"/><circle cx="32" cy="32" r="23" fill="#f3dcc0"/><path d="M8 40c8-5 15-5 22-1 7-4 14-4 26 1v20H8z" fill="var(--clay)" clip-path="url(#nav-disc)"/><text x="32" y="35" text-anchor="middle" font-family="'Reem Kufi', sans-serif" font-weight="700" font-size="13" fill="#24110a">لدهاس</text></svg><b>Ledhas</b></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#gite">Le gîte</a>
+      <a href="#chambres">Chambres</a>
+      <a href="#decouvrir">Découvrir</a>
+      <a href="#quad">Quad</a>
+      <a href="#evasions">Évasions</a>
+      <a href="#evenements">Événements</a>
+      <a href="#reserver">Réserver</a>
+    </nav>
+    <a class="btn btn-wa btn-sm js-wa" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<div class="clock" aria-hidden="true"><i></i><strong id="clockTime">06:40</strong><em id="clockLabel">Aube</em></div>
+
+<main id="top">
+  <section class="hero" data-moment="0">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+      <p class="coords rise">Gîte · Massine, Timimoun · 29°17′08″N 0°14′30″E</p>
+      <h1 class="name rise">Ledhas</h1>
+      <p class="name-ar rise" lang="ar" dir="rtl">لدهاس</p>
+      <p class="tagline rise">Lieu de joie, de spectacle et de vie</p>
+      <div class="hero-row rise">
+        <p class="lead">Onze grandes chambres aux portes des dunes de Timimoun. Le jour, on part découvrir l'oasis rouge. Le soir, on se retrouve en musique.</p>
+        <div class="ctas">
+          <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+            Réserver sur WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#gite">Voir le gîte</a>
+        </div>
+      </div>
+      </div>
+      <figure class="ph hero-photo rise">
+        <img src="https://images.unsplash.com/photo-1770066814828-2027a6d9f053?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="Ancien ksar sur les dunes de Timimoun au coucher du soleil" fetchpriority="high">
+        <figcaption>Timimoun, l'oasis rouge</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="gite" data-moment="1">
+    <div class="wrap split">
+      <div class="stack rise">
+        <p class="kicker">Le matin</p>
+        <h2>Un gîte, onze grandes chambres</h2>
+        <p class="lead">Ledhas se trouve à Massine, à Timimoun. Vous vous réveillez face au désert et le petit-déjeuner vous attend.</p>
+        <dl class="facts">
+          <div><dt>Chambres</dt><dd>11 grandes chambres</dd></div>
+          <div><dt>Petit-déjeuner</dt><dd>Inclus</dd></div>
+          <div><dt>Déjeuner et dîner</dt><dd>Sur commande</dd></div>
+          <div><dt>Tarifs</dt><dd>Sur demande</dd></div>
+        </dl>
+      </div>
+      <div class="rise">
+        <div class="rooms">
+          <figure class="ph room-a"><img loading="lazy" src="img/chambre-paniers.jpg" alt="Chambre de Ledhas : grand lit, plafond traditionnel et paniers tressés"><figcaption>Une chambre de Ledhas</figcaption></figure>
+          <figure class="ph room-b"><img loading="lazy" src="img/chambre-lampe.jpg" alt="Lampe artisanale et table de nuit en bois dans une chambre de Ledhas"><figcaption>Le soir, à la lampe</figcaption></figure>
+        </div>
+        <p class="note">Plafond traditionnel, vannerie et lumière douce. Les vraies chambres de Ledhas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band gallery-band" id="chambres">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">Les chambres</p>
+          <h2>Onze chambres, une même douceur</h2>
+        </div>
+        <p class="lead">Plafonds traditionnels, tapis tissés, vannerie et lumière douce. Toutes les photos sont prises à Ledhas.</p>
+      </div>
+      <div class="kilim" aria-hidden="true"></div>
+      <div class="gallery">
+        <button class="ph g-big rise" type="button" data-full="img/chambre-large.jpg"><img loading="lazy" src="img/chambre-large.jpg" alt="Chambre de Ledhas avec un lit double et un lit simple"><figcaption>Lit double et lit simple</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/chambre-tapis.jpg"><img loading="lazy" src="img/chambre-tapis.jpg" alt="Chambre vue derrière un tapis tissé rouge"><figcaption>Derrière le tapis</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/chambre-couloir.jpg"><img loading="lazy" src="img/chambre-couloir.jpg" alt="Chambre en longueur vers la porte en bois"><figcaption>Vers la porte en bois</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/chambre-simple.jpg"><img loading="lazy" src="img/chambre-simple.jpg" alt="Lit simple, lampe et tissage rouge au mur"><figcaption>Le coin lit simple</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/salle-de-bain.jpg"><img loading="lazy" src="img/salle-de-bain.jpg" alt="Salle de bain avec miroir en corde"><figcaption>La salle de bain</figcaption></button>
+      </div>
+    </div>
+  </section>
+
+  <dialog id="viewer" aria-label="Photo agrandie"><img id="viewerImg" alt=""><button type="button" id="viewerClose" aria-label="Fermer">×</button></dialog>
+
+  <section class="band" id="decouvrir" data-moment="2">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">L'après-midi</p>
+          <h2>Les mystères de Timimoun</h2>
+        </div>
+        <p class="lead">On vous emmène là où se trouve le vrai Timimoun, entre le sable, la terre rouge et les traditions du Gourara.</p>
+      </div>
+      <div class="tiles">
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1667589177164-10f38558e923?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Les grandes dunes de Timimoun"></figure>
+          <h3>Les grandes dunes</h3>
+          <p>Marches dans l'erg et couchers de soleil sur le sable.</p>
+        </article>
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1770066814788-b3a3c11f51bc?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Randonneurs vers un ancien ksar dans les dunes de Timimoun"></figure>
+          <h3>Les ksour</h3>
+          <p>Les villages fortifiés en terre rouge, qui donnent son nom à l'oasis rouge.</p>
+        </article>
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1632257996200-cb89e88cac8d?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Rochers et sable dans le Sahara algérien"></figure>
+          <h3>Les grottes</h3>
+          <p>Des sorties vers les grottes et les sites rocheux de la région.</p>
+        </article>
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1627477574861-1426f26e82dc?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Promenade à dos de dromadaire dans le désert algérien"></figure>
+          <h3>La culture</h3>
+          <p>Traditions, artisanat et rencontres avec les habitants.</p>
+        </article>
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1667589177162-0600e57d7112?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Sebkha et dunes près de Timimoun"></figure>
+          <h3>La gastronomie</h3>
+          <p>La cuisine du Sud, servie au gîte sur commande.</p>
+        </article>
+        <article class="tile rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1672509805242-ceaf4eee21d7?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Pleine lune derrière les palmiers"></figure>
+          <h3>La musique</h3>
+          <p>Les rythmes du Gourara, à écouter le soir au gîte.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="quad">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">Nouveau</p>
+          <h2>Le quad dans les dunes, une première à Timimoun</h2>
+        </div>
+        <div class="stack" style="gap:14px">
+          <p class="lead">Partez en quad sur les grandes dunes de Timimoun et arrêtez-vous sur la crête pour le coucher du soleil.</p>
+          <div class="ctas">
+            <a class="btn btn-wa btn-sm js-quad" href="#" target="_blank" rel="noopener">Réserver une sortie en quad</a>
+            <a class="btn btn-ghost btn-sm" href="https://www.youtube.com/watch?v=o1z97hgu_l0" target="_blank" rel="noopener">Voir le reportage de Canal Algérie</a>
+          </div>
+        </div>
+      </div>
+      <div class="quad-grid">
+        <button class="ph q-wide rise" type="button" data-full="img/quad-coucher.jpg"><img loading="lazy" src="img/quad-coucher.jpg" alt="Quatre quads alignés sur une dune au coucher du soleil"><figcaption>Sur la crête, au coucher du soleil</figcaption></button>
+        <button class="ph q-tall rise" type="button" data-full="img/quad-groupe.jpg"><img loading="lazy" src="img/quad-groupe.jpg" alt="Groupe en quad saluant sur les dunes"><figcaption>Le groupe au sommet</figcaption></button>
+        <button class="ph q-tall rise" type="button" data-full="img/quad-guide.jpg"><img loading="lazy" src="img/quad-guide.jpg" alt="Deux participants à côté d'un quad, face aux dunes"><figcaption>Cap sur les dunes</figcaption></button>
+        <button class="ph q-wide2 rise" type="button" data-full="img/quad-pause.jpg"><img loading="lazy" src="img/quad-pause.jpg" alt="Pause sur la dune avec vue sur l'oasis de Timimoun"><figcaption>La pause, face à l'oasis</figcaption></button>
+        <button class="ph q-small rise" type="button" data-full="img/quad-depart.jpg"><img loading="lazy" src="img/quad-depart.jpg" alt="Départ en quad devant un mur rouge et un palmier"><figcaption>Prêt à partir</figcaption></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="the">
+    <div class="wrap tea">
+      <figure class="ph tea-video rise">
+        <video id="teaVideo" src="video/the-coucher.mp4" poster="img/the-poster.jpg" muted loop playsinline preload="metadata" aria-label="Préparation du thé au coucher du soleil"></video>
+        <figcaption>Le thé, au coucher du soleil</figcaption>
+      </figure>
+      <div class="stack rise">
+        <p class="kicker">L'accueil</p>
+        <h2>Le thé, versé de haut, face au désert</h2>
+        <p class="lead">À Ledhas, la journée se termine en haut, sur un tapis, avec le thé préparé à l'ancienne pendant que le soleil descend sur la palmeraie.</p>
+        <div><button class="btn btn-ghost btn-sm" type="button" id="teaToggle" aria-pressed="true">Mettre la vidéo en pause</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="evasions" data-moment="3">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">Au coucher du soleil</p>
+          <h2>Évasions thématiques et team building</h2>
+        </div>
+        <p class="lead">Des séjours construits autour d'un thème, pour un groupe d'amis ou une équipe. Dites-nous ce que vous cherchez, on prépare le programme.</p>
+      </div>
+      <div class="duo">
+        <article class="card rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628676149820-de1d7edd9647?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Groupe marchant dans le désert algérien"></figure>
+          <h3>Évasions thématiques</h3>
+          <p>Un séjour à Timimoun organisé autour d'une envie : le désert, les ksour, la culture ou la musique.</p>
+          <ul class="chips"><li>Dunes</li><li>Ksour</li><li>Grottes</li><li>Gastronomie</li><li>Musique</li></ul>
+          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="Évasion thématique">Demander un programme</a></div>
+        </article>
+        <article class="card rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628491099146-831834847c0d?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Groupe assis sur le sable dans le Sahara"></figure>
+          <h3>Team building</h3>
+          <p>Sortez votre équipe du bureau : activités dans le désert, temps ensemble et soirées au gîte.</p>
+          <ul class="chips"><li>Entreprises</li><li>Groupes</li><li>Programme sur mesure</li></ul>
+          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="Team building">Demander un devis</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+    <section class="band" id="evenements">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">Événements</p>
+          <h2>Bientôt à Ledhas</h2>
+        </div>
+        <p class="lead">Les prochaines dates seront annoncées très bientôt. Demandez à être prévenu sur WhatsApp.</p>
+      </div>
+      <div class="events">
+        <article class="event rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1643326626216-f605fd0f654d?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Rochers sous un ciel de nuit étoilé"></figure>
+          <div class="event-body">
+            <span class="badge">Bientôt</span>
+            <h3>Soirée musicale sous les étoiles</h3>
+            <p class="event-date">Date bientôt annoncée</p>
+            <p>Musique du Gourara, dîner et nuit au gîte.</p>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="la prochaine soirée musicale">Me prévenir</a>
+          </div>
+        </article>
+        <article class="event rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628676148873-6ca4095f3eeb?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Dunes de sable sous un ciel bleu"></figure>
+          <div class="event-body">
+            <span class="badge">Bientôt</span>
+            <h3>Évasion dans les dunes</h3>
+            <p class="event-date">Date bientôt annoncée</p>
+            <p>Un séjour thématique : dunes, ksour et coucher de soleil.</p>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="la prochaine évasion dans les dunes">Me prévenir</a>
+          </div>
+        </article>
+        <article class="event rise">
+          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1630212372267-c505a3dee6b9?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Groupe marchant dans le désert"></figure>
+          <div class="event-body">
+            <span class="badge">Bientôt</span>
+            <h3>Team building au désert</h3>
+            <p class="event-date">Date bientôt annoncée</p>
+            <p>Une journée d'activités pour les équipes et les entreprises.</p>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="le prochain team building">Me prévenir</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="reserver" data-moment="4">
+    <div class="wrap">
+      <svg class="garland" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,10.0 20,13.3 40,16.6 60,19.9 80,23.1 100,26.3 120,29.5 140,32.6 160,35.6 180,38.6 200,41.5 220,44.3 240,47.0 260,49.6 280,52.2 300,54.5 320,56.8 340,59.0 360,61.0 380,62.8 400,64.6 420,66.1 440,67.6 460,68.8 480,69.9 500,70.9 520,71.6 540,72.2 560,72.7 580,72.9 600,73.0 620,72.9 640,72.7 660,72.2 680,71.6 700,70.9 720,69.9 740,68.8 760,67.6 780,66.1 800,64.6 820,62.8 840,61.0 860,59.0 880,56.8 900,54.5 920,52.2 940,49.6 960,47.0 980,44.3 1000,41.5 1020,38.6 1040,35.6 1060,32.6 1080,29.5 1100,26.3 1120,23.1 1140,19.9 1160,16.6 1180,13.3 1200,10.0" fill="none" stroke="currentColor" stroke-width="1.6"/><g transform="translate(50 18.2)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.37s"/></g><g transform="translate(100 26.3)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.74s"/></g><g transform="translate(150 34.1)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.11s"/></g><g transform="translate(200 41.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.48s"/></g><g transform="translate(250 48.4)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.85s"/></g><g transform="translate(300 54.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:2.22s"/></g><g transform="translate(350 60.0)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.19s"/></g><g transform="translate(400 64.6)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.56s"/></g><g transform="translate(450 68.2)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.93s"/></g><g transform="translate(500 70.9)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.30s"/></g><g transform="translate(550 72.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.67s"/></g><g transform="translate(600 73.0)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:2.04s"/></g><g transform="translate(650 72.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.01s"/></g><g transform="translate(700 70.9)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.38s"/></g><g transform="translate(750 68.2)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.75s"/></g><g transform="translate(800 64.6)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.12s"/></g><g transform="translate(850 60.0)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.49s"/></g><g transform="translate(900 54.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.86s"/></g><g transform="translate(950 48.4)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:2.23s"/></g><g transform="translate(1000 41.5)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.20s"/></g><g transform="translate(1050 34.1)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.57s"/></g><g transform="translate(1100 26.3)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:0.94s"/></g><g transform="translate(1150 18.2)"><line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1.4"/><circle class="bulb" cx="0" cy="15" r="6.5" style="animation-delay:1.31s"/></g></svg>
+      <div class="stack rise">
+        <p class="kicker">La nuit</p>
+        <h2 class="night-title">Le soir, la musique</h2>
+        <p class="lead">Les soirées musicales de Ledhas, sous le ciel étoilé de Timimoun, pour finir la journée ensemble.</p>
+      </div>
+
+      <div class="book">
+        <div class="card rise">
+          <h3>Réserver votre séjour</h3>
+          <p>Remplissez ces quelques lignes. Votre demande s'ouvre dans WhatsApp, prête à être envoyée.</p>
+          <form id="bookForm" novalidate>
+            <label class="full" for="f-nom">Nom complet
+              <input id="f-nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom">
+            </label>
+            <label for="f-arrivee">Arrivée
+              <input id="f-arrivee" name="arrivee" type="date">
+            </label>
+            <label for="f-nuits">Nuits
+              <input id="f-nuits" name="nuits" type="number" min="1" max="30" value="2" inputmode="numeric">
+            </label>
+            <label for="f-pers">Personnes
+              <input id="f-pers" name="pers" type="number" min="1" max="60" value="2" inputmode="numeric">
+            </label>
+            <label for="f-formule">Formule
+              <select id="f-formule" name="formule">
+                <option>Séjour au gîte</option>
+                <option>Évasion thématique</option>
+                <option>Team building</option>
+                <option>Soirée musicale</option>
+                <option>Sortie en quad</option>
+              </select>
+            </label>
+            <label class="full" for="f-msg">Message
+              <textarea id="f-msg" name="msg" placeholder="Une précision, une question…"></textarea>
+            </label>
+            <a class="btn btn-wa send full" id="waSend" href="#" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+              Envoyer la demande sur WhatsApp
+            </a>
+          </form>
+        </div>
+
+        <div class="card rise">
+          <dl class="info">
+            <div><dt>Adresse</dt><dd>Massine, Timimoun, Algérie</dd></div>
+            <div>
+              <dt>Coordonnées</dt>
+              <dd>29°17′08″N 0°14′30″E</dd>
+              <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=29.285652,0.241852" target="_blank" rel="noopener">Ouvrir dans Google Maps →</a>
+            </div>
+            <div>
+              <dt>WhatsApp</dt>
+              <dd class="num"><code id="numText">+213 550 58 11 96</code><button class="copy" id="copyNum" type="button">Copier</button></dd>
+            </div>
+            <div><dt>Repas</dt><dd>Petit-déjeuner inclus. Déjeuner et dîner sur commande.</dd></div>
+            <div><dt>Tarifs</dt><dd>Sur demande, selon la saison et la formule.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-seal"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Ledhas">
+  <defs><path id="fs-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/><clipPath id="fs-disc"><circle cx="100" cy="100" r="58"/></clipPath></defs>
+  <circle cx="100" cy="100" r="96" fill="#a3401f"/>
+  <circle cx="100" cy="100" r="88" fill="none" stroke="#f3dcc0" stroke-width="1.5"/>
+  <text font-family="'IBM Plex Mono', ui-monospace, monospace" font-weight="500" font-size="13" fill="#f3dcc0"><textPath href="#fs-ring" textLength="462" lengthAdjust="spacing">LEDHAS · GÎTE · TIMIMOUN · MASSINE · </textPath></text>
+  <circle cx="100" cy="100" r="58" fill="#f3dcc0"/>
+  <path d="M40 120c17-12 35-12 52-2 17-10 35-10 68 2v42H40z" fill="#a3401f" clip-path="url(#fs-disc)"/>
+  <path d="M100 57l2.6 6.2 6.4.5-4.9 4.2 1.5 6.3-5.6-3.4-5.6 3.4 1.5-6.3-4.9-4.2 6.4-.5z" fill="#a3401f"/>
+  <text x="100" y="106" text-anchor="middle" font-family="'Reem Kufi', 'Noto Kufi Arabic', sans-serif" font-weight="700" font-size="30" fill="#24110a">لدهاس</text>
+</svg></div>
+    <span>© 2026 Ledhas · Massine, Timimoun</span>
+    <span>Site réalisé par <a href="https://nova-web-dz.vercel.app" target="_blank" rel="noopener">Nova Web Dz</a></span>
+    <p class="credits">Photos d'illustration via Unsplash : Hichem Meghachou, Romain Virtuel, Hani Ryad, Halima Bouchouicha, Azzedine Rouichi, Mohcen Cherifi, Achoub Mouad, radwan menzer.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  /* Numéro WhatsApp du gîte (format international, sans +). À confirmer avec le client. */
+  var WA_NUMBER = "213550581196";
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement;
+
+  /* ---------- WhatsApp links ---------- */
+  function waLink(text){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text); }
+  var hello = "Bonjour Ledhas, je souhaite des informations sur un séjour au gîte.";
+  document.querySelectorAll(".js-wa").forEach(function(a){ a.href = waLink(hello); });
+
+  var form = document.getElementById("bookForm");
+  var send = document.getElementById("waSend");
+  var f = function(id){ return document.getElementById(id); };
+  function fmtDate(v){
+    if(!v) return "";
+    var p = v.split("-"); return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : v;
+  }
+  function buildMessage(){
+    var lines = ["Bonjour Ledhas, je souhaite faire une demande de réservation."];
+    var nom = f("f-nom").value.trim();
+    if(nom) lines.push("Nom : " + nom);
+    if(f("f-arrivee").value) lines.push("Arrivée : " + fmtDate(f("f-arrivee").value));
+    if(f("f-nuits").value) lines.push("Nuits : " + f("f-nuits").value);
+    if(f("f-pers").value) lines.push("Personnes : " + f("f-pers").value);
+    lines.push("Formule : " + f("f-formule").value);
+    var msg = f("f-msg").value.trim();
+    if(msg) lines.push("Message : " + msg);
+    return lines.join("\n");
+  }
+  function refresh(){ send.href = waLink(buildMessage()); }
+  form.addEventListener("input", refresh);
+  form.addEventListener("change", refresh);
+  form.addEventListener("submit", function(e){ e.preventDefault(); });
+  try{
+    var d = new Date(); var iso = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+    f("f-arrivee").min = iso;
+  }catch(e){}
+  refresh();
+
+  var tv = document.getElementById("teaVideo"), tt = document.getElementById("teaToggle");
+  function setTea(play){
+    if(play){ var p = tv.play(); if(p && p.catch) p.catch(function(){}); tt.textContent = "Mettre la vidéo en pause"; tt.setAttribute("aria-pressed","true"); }
+    else { tv.pause(); tt.textContent = "Lire la vidéo"; tt.setAttribute("aria-pressed","false"); }
+  }
+  if(reduce){ setTea(false); }
+  else if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ if(tt.getAttribute("aria-pressed")==="true"){ e.isIntersecting ? tv.play().catch(function(){}) : tv.pause(); } }); }, { threshold: .25 }).observe(tv);
+  } else { setTea(true); }
+  tt.addEventListener("click", function(){ setTea(tv.paused); });
+
+  document.querySelectorAll(".js-quad").forEach(function(a){
+    a.href = waLink("Bonjour Ledhas, je souhaite réserver une sortie en quad dans les dunes.");
+  });
+  document.querySelectorAll(".js-notify").forEach(function(a){
+    a.href = waLink("Bonjour Ledhas, prévenez-moi pour " + a.getAttribute("data-event") + ".");
+  });
+  document.querySelectorAll(".ph img").forEach(function(img){
+    function bad(){ img.classList.add("broken"); }
+    if(img.complete && img.naturalWidth === 0) bad();
+    img.addEventListener("error", bad);
+  });
+
+  var viewer = document.getElementById("viewer"), viewerImg = document.getElementById("viewerImg");
+  document.querySelectorAll("[data-full]").forEach(function(b){
+    b.addEventListener("click", function(){
+      viewerImg.src = b.getAttribute("data-full");
+      viewerImg.alt = (b.querySelector("img") || {}).alt || "";
+      try{ viewer.showModal(); }catch(e){ viewer.setAttribute("open", ""); }
+    });
+  });
+  document.getElementById("viewerClose").addEventListener("click", function(){ viewer.close ? viewer.close() : viewer.removeAttribute("open"); });
+  viewer.addEventListener("click", function(e){ if(e.target === viewer && viewer.close) viewer.close(); });
+
+  document.querySelectorAll("[data-formule]").forEach(function(a){
+    a.addEventListener("click", function(){
+      f("f-formule").value = a.getAttribute("data-formule"); refresh();
+    });
+  });
+
+  var copyBtn = document.getElementById("copyNum");
+  copyBtn.addEventListener("click", function(){
+    var txt = document.getElementById("numText").textContent;
+    function selectIt(){
+      try{ var r = document.createRange(); r.selectNodeContents(document.getElementById("numText")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }catch(e){}
+    }
+    function done(label){ copyBtn.textContent = label; setTimeout(function(){ copyBtn.textContent = "Copier"; }, 1800); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(function(){ done("Copié"); }, function(){ selectIt(); done("Sélectionné"); });
+    } else { selectIt(); done("Sélectionné"); }
+  });
+
+  /* ---------- Smooth scroll (Lenis + GSAP) ---------- */
+  var lenis = null;
+  var hasGsap = !!(window.gsap && window.ScrollTrigger);
+  if(hasGsap) gsap.registerPlugin(ScrollTrigger);
+  if(!reduce && window.Lenis){
+    try{
+      lenis = new Lenis({ lerp: 0.085, smoothWheel: true });
+      if(hasGsap){
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      } else {
+        var loop = function(t){ lenis.raf(t); requestAnimationFrame(loop); };
+        requestAnimationFrame(loop);
+      }
+    }catch(e){ lenis = null; }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      var id = a.getAttribute("href");
+      if(id.length < 2) return;
+      var el = document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      if(lenis) lenis.scrollTo(el, { offset: id === "#top" ? 0 : -20, duration: 1.6 });
+      else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    });
+  });
+
+  /* Content stays visible at rest; it only drifts into place. */
+  if(hasGsap && !reduce){
+    gsap.from(".hero .rise", { y: 34, duration: 1.2, ease: "power3.out", stagger: 0.09, delay: 0.1 });
+    ScrollTrigger.batch("main .band .rise", {
+      once: true, start: "top 92%",
+      onEnter: function(els){ gsap.from(els, { y: 46, duration: 1.1, ease: "power3.out", stagger: 0.07 }); }
+    });
+  }
+
+  /* ---------- The sky ---------- */
+  var cv = document.getElementById("sky");
+  var ctx = cv.getContext("2d");
+  var W = 0, H = 0, DPR = 1, stops = [0, .25, .5, .75, 1];
+
+  function hex(h){ h = h.replace("#",""); return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)]; }
+  var RAW = [
+    { sky:["#e7997a","#f3c39a","#fbe2c2"], sun:"#fff0cf", dune:["#e6b689","#d79a63","#bb7444"], ksar:"#a04b2d", palm:"#6d3a22" },
+    { sky:["#79acd3","#b9d6e5","#f0dbb7"], sun:"#fffbeb", dune:["#efcf9f","#e1ac72","#c8854b"], ksar:"#a9492a", palm:"#5f3a1f" },
+    { sky:["#c5875a","#e9b07a","#f6d3a3"], sun:"#fff0c2", dune:["#e8b278","#d28d50","#b06934"], ksar:"#8e3a21", palm:"#55301b" },
+    { sky:["#2c1736","#9f3836","#ec7a42"], sun:"#ffb066", dune:["#7a3326","#5b2421","#3d1a1c"], ksar:"#3b1617", palm:"#2a1012" },
+    { sky:["#04050c","#0b1130","#1d1a3e"], sun:"#ebe5d6", dune:["#1e1b31","#151424","#0d0c17"], ksar:"#0b0a13", palm:"#07060d" }
+  ];
+  var KEYS = RAW.map(function(k){ return { sky:k.sky.map(hex), sun:hex(k.sun), dune:k.dune.map(hex), ksar:hex(k.ksar), palm:hex(k.palm) }; });
+  var NIGHT = [0, 0, 0, .28, 1], LIGHTS = [0, 0, 0, .55, 1];
+  var TIMES = [400, 600, 840, 1100, 1290];
+  var LABELS = ["Aube", "Matin", "Après-midi", "Coucher du soleil", "Nuit"];
+
+  function mix(a, b, t){ return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t, a[2]+(b[2]-a[2])*t]; }
+  function rgb(c, a){ return "rgba(" + (c[0]|0) + "," + (c[1]|0) + "," + (c[2]|0) + "," + (a == null ? 1 : a) + ")"; }
+  function shade(c, k){ return [c[0]*k, c[1]*k, c[2]*k]; }
+  function ease(t){ return t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2; }
+  function smooth(a, b, x){ var t = Math.min(1, Math.max(0, (x-a)/(b-a))); return t*t*(3-2*t); }
+  function lerp(a, b, t){ return a + (b-a)*t; }
+
+  var stars = [], dust = [];
+  function buildStars(){
+    var n = Math.min(260, Math.round(W*H/4800));
+    stars = [];
+    for(var i=0;i<n;i++) stars.push({ x: Math.random()*W, y: Math.random()*H*0.66, r: Math.random()*1.3 + .25, a: Math.random()*.7 + .3, sp: Math.random()*2 + .6, ph: Math.random()*6.28 });
+    dust = [];
+    var m = reduce ? 0 : Math.round(Math.min(46, W/28));
+    for(var j=0;j<m;j++) dust.push({ x: Math.random()*W, y: H*(.45 + Math.random()*.45), vx: .15 + Math.random()*.45, vy: (Math.random()-.5)*.12, r: Math.random()*1.5 + .4 });
+  }
+
+  function computeStops(){
+    var secs = document.querySelectorAll("[data-moment]");
+    var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    var s = [];
+    secs.forEach(function(sec, i){
+      var top = sec.getBoundingClientRect().top + scrollY;
+      s[i] = i === 0 ? 0 : Math.min(1, Math.max(0, (top - innerHeight*.45) / max));
+    });
+    for(var i=1;i<s.length;i++) if(s[i] <= s[i-1]) s[i] = Math.min(1, s[i-1] + .001);
+    if(s.length === 5) stops = s;
+  }
+
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.round(W*DPR); cv.height = Math.round(H*DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildStars(); computeStops();
+  }
+
+  function uFromP(p){
+    if(p <= stops[0]) return 0;
+    for(var i=0;i<stops.length-1;i++){
+      if(p < stops[i+1]) return i + (p - stops[i]) / Math.max(1e-4, stops[i+1] - stops[i]);
+    }
+    return stops.length - 1;
+  }
+
+  var KSAR = [[0,.10,.52],[.08,.14,.88],[.2,.08,.6],[.27,.16,1.25],[.41,.1,.7],[.5,.12,.95],[.6,.07,.58],[.66,.15,1.1],[.8,.09,.7],[.88,.12,.48]];
+
+  function duneY(x, base, amp, xo){
+    return base + amp*Math.sin((x+xo)*0.0042) + amp*.45*Math.sin((x+xo)*0.0109 + 1.3) + amp*.18*Math.sin((x+xo)*0.027);
+  }
+  function drawDune(base, amp, xo, col, ridge){
+    ctx.beginPath(); ctx.moveTo(0, H);
+    var top = base - amp*1.6;
+    for(var x=0; x<=W+8; x+=8) ctx.lineTo(x, duneY(x, base, amp, xo));
+    ctx.lineTo(W, H); ctx.closePath();
+    var g = ctx.createLinearGradient(0, top, 0, H);
+    g.addColorStop(0, rgb(col)); g.addColorStop(1, rgb(shade(col, .72)));
+    ctx.fillStyle = g; ctx.fill();
+    if(ridge > .01){
+      ctx.beginPath();
+      for(var x2=0; x2<=W+8; x2+=8){ var y = duneY(x2, base, amp, xo); if(x2===0) ctx.moveTo(x2,y); else ctx.lineTo(x2,y); }
+      ctx.strokeStyle = "rgba(255,240,215," + (ridge*.35) + ")"; ctx.lineWidth = 1.2; ctx.stroke();
+    }
+  }
+  function palm(x, base, h, col){
+    ctx.strokeStyle = rgb(col); ctx.lineCap = "round";
+    ctx.lineWidth = Math.max(2, h*.05);
+    var tx = x + h*.05, ty = base - h;
+    ctx.beginPath(); ctx.moveTo(x, base); ctx.quadraticCurveTo(x + h*.1, base - h*.5, tx, ty); ctx.stroke();
+    ctx.lineWidth = Math.max(1.4, h*.032);
+    for(var k=0;k<8;k++){
+      var a = -Math.PI/2 + (k-3.5)*.44, len = h*.46;
+      var ex = tx + Math.cos(a)*len, ey = ty + Math.sin(a)*len*.55 + len*.42;
+      var cx = tx + Math.cos(a)*len*.55, cy = ty + Math.sin(a)*len*.7 - len*.08;
+      ctx.beginPath(); ctx.moveTo(tx, ty); ctx.quadraticCurveTo(cx, cy, ex, ey); ctx.stroke();
+    }
+  }
+  function ksar(col, lights){
+    var mobile = W < 720;
+    var sw = mobile ? W*.66 : Math.min(W*.42, 600);
+    var x0 = mobile ? W*.3 : W - sw - W*.05;
+    var hu = sw*.12, base = H*.765;
+    ctx.fillStyle = rgb(col.ksar);
+    for(var i=0;i<KSAR.length;i++){
+      var b = KSAR[i], bx = x0 + b[0]*sw, bw = b[1]*sw, bh = b[2]*hu, by = base - bh;
+      ctx.fillRect(bx, by, bw, bh + 4);
+      var step = Math.max(7, bw/6);
+      ctx.beginPath();
+      for(var sx = bx; sx < bx + bw - 2; sx += step){
+        ctx.moveTo(sx, by); ctx.lineTo(sx + step*.5, by - step*.75); ctx.lineTo(Math.min(sx + step, bx + bw), by);
+      }
+      ctx.fill();
+      if(lights > .01 && bh > hu*.8){
+        ctx.fillStyle = "rgba(255,196,110," + lights*.9 + ")";
+        ctx.fillRect(bx + bw*.3, by + bh*.32, Math.max(3, bw*.09), Math.max(4, bh*.1));
+        if(bw > 40) ctx.fillRect(bx + bw*.64, by + bh*.55, Math.max(3, bw*.08), Math.max(4, bh*.09));
+        ctx.fillStyle = rgb(col.ksar);
+      }
+    }
+    palm(x0 + sw*.47, base + hu*.05, hu*1.45, col.palm);
+    palm(x0 + sw*1.03, base - hu*.05, hu*2.2, col.palm);
+  }
+
+  var lastNight = null, lastMin = -1;
+  var timeEl = document.getElementById("clockTime"), labelEl = document.getElementById("clockLabel");
+
+  function frame(t){
+    t = t || 0;
+    var max = Math.max(1, document.documentElement.scrollHeight - H);
+    var sy = window.scrollY || 0;
+    var p = Math.min(1, Math.max(0, sy / max));
+    var u = uFromP(p);
+    var i = Math.min(3, Math.floor(u)), fr = ease(Math.min(1, u - i));
+    var A = KEYS[i], B = KEYS[i+1];
+    var col = {
+      sky: [mix(A.sky[0],B.sky[0],fr), mix(A.sky[1],B.sky[1],fr), mix(A.sky[2],B.sky[2],fr)],
+      sun: mix(A.sun,B.sun,fr),
+      dune: [mix(A.dune[0],B.dune[0],fr), mix(A.dune[1],B.dune[1],fr), mix(A.dune[2],B.dune[2],fr)],
+      ksar: mix(A.ksar,B.ksar,fr), palm: mix(A.palm,B.palm,fr)
+    };
+    var n = lerp(NIGHT[i], NIGHT[i+1], fr), lights = lerp(LIGHTS[i], LIGHTS[i+1], fr);
+    var horizon = H*.72;
+
+    var g = ctx.createLinearGradient(0, 0, 0, horizon);
+    g.addColorStop(0, rgb(col.sky[0])); g.addColorStop(.55, rgb(col.sky[1])); g.addColorStop(1, rgb(col.sky[2]));
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    if(n > .01){
+      for(var s=0;s<stars.length;s++){
+        var st = stars[s];
+        var tw = reduce ? 1 : .55 + .45*Math.sin(t*.001*st.sp + st.ph);
+        ctx.fillStyle = "rgba(255,248,232," + (n*st.a*tw) + ")";
+        ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, 6.283); ctx.fill();
+      }
+    }
+
+    if(u < 3.42){
+      var sunH = Math.sin(Math.PI * Math.min(1, Math.max(0, (u + .25) / 3.6)));
+      var sx = W*(.16 + .7*Math.min(u, 3.35)/3.35);
+      var syy = horizon - sunH*H*.46;
+      var r = Math.max(26, Math.min(W, H)*.055);
+      var glow = ctx.createRadialGradient(sx, syy, r*.4, sx, syy, r*6.5);
+      glow.addColorStop(0, rgb(col.sun, .55)); glow.addColorStop(1, rgb(col.sun, 0));
+      ctx.fillStyle = glow; ctx.fillRect(sx - r*7, syy - r*7, r*14, r*14);
+      ctx.fillStyle = rgb(col.sun); ctx.beginPath(); ctx.arc(sx, syy, r, 0, 6.283); ctx.fill();
+    }
+    if(u > 3.3){
+      var ma = smooth(3.3, 3.9, u), mx = W*(W < 720 ? .76 : .8), my = H*.17, mr = Math.max(16, Math.min(W,H)*.028);
+      var mg = ctx.createRadialGradient(mx, my, mr*.5, mx, my, mr*5);
+      mg.addColorStop(0, "rgba(235,229,214," + (.3*ma) + ")"); mg.addColorStop(1, "rgba(235,229,214,0)");
+      ctx.fillStyle = mg; ctx.fillRect(mx - mr*5, my - mr*5, mr*10, mr*10);
+      ctx.fillStyle = "rgba(240,234,220," + ma + ")"; ctx.beginPath(); ctx.arc(mx, my, mr, 0, 6.283); ctx.fill();
+      ctx.fillStyle = rgb(mix(col.sky[0], col.sky[1], .2), ma); ctx.beginPath(); ctx.arc(mx + mr*.42, my - mr*.18, mr*.88, 0, 6.283); ctx.fill();
+    }
+
+    var ridge = (1 - n) * (u < 3 ? 1 : 1 - smooth(3, 3.6, u));
+    drawDune(H*.705, H*.024, sy*.045, col.dune[0], ridge*.6);
+    ksar(col, lights);
+    drawDune(H*.8, H*.032, sy*.1 + 400, col.dune[1], ridge);
+    drawDune(H*.915, H*.036, sy*.18 + 900, col.dune[2], ridge*.8);
+
+    if(dust.length && n < .95){
+      for(var d=0; d<dust.length; d++){
+        var q = dust[d];
+        q.x += q.vx; q.y += q.vy + Math.sin(t*.0008 + d)*.05;
+        if(q.x > W + 10){ q.x = -10; q.y = H*(.45 + Math.random()*.45); }
+        ctx.fillStyle = "rgba(255,236,205," + (.32*(1-n)) + ")";
+        ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, 6.283); ctx.fill();
+      }
+    }
+
+    var night = u > 2.55;
+    if(night !== lastNight){ root.classList.toggle("is-night", night); lastNight = night; }
+    document.body.style.backgroundColor = rgb(col.dune[2]);
+
+    var minutes = Math.round(lerp(TIMES[i], TIMES[i+1], Math.min(1, u - i)));
+    if(minutes !== lastMin){
+      lastMin = minutes;
+      timeEl.textContent = String(Math.floor(minutes/60)).padStart(2,"0") + ":" + String(minutes%60).padStart(2,"0");
+      labelEl.textContent = LABELS[Math.min(4, Math.round(u))];
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  window.addEventListener("resize", resize);
+  window.addEventListener("load", computeStops);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(computeStops);
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
