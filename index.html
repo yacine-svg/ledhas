@@ -285,6 +285,20 @@ footer a{text-decoration:none;font-weight:600;color:var(--ink)}
 :root.is-night .garland .bulb{opacity:1;filter:drop-shadow(0 0 6px #ffb14d) drop-shadow(0 0 14px rgba(255,170,70,.6));animation:glow 2.4s ease-in-out infinite}
 @keyframes glow{50%{opacity:.7}}
 
+/* ---------- Animation helpers ---------- */
+.anim .hero .name{overflow:hidden;padding-bottom:.06em}
+.anim .hero .name .ch{display:inline-block;will-change:transform}
+.anim h2 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.anim h2 .w > span{display:inline-block;will-change:transform}
+.anim .kicker::before{transform:scaleX(0);transform-origin:left center;transition:transform .9s cubic-bezier(.2,.7,.2,1) .15s}
+.anim .kicker.on::before{transform:scaleX(1)}
+.ph img,.ph video{will-change:transform}
+.ph:hover img{filter:brightness(1.07) saturate(1.08)}
+.ph img{transition:filter .5s ease,opacity .4s}
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s ease}
+.btn:hover::after{transform:translateX(120%)}
+
 /* Tea video */
 .tea{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,96px);align-items:center}
 .tea > *{min-width:0}
@@ -867,13 +881,72 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     });
   });
 
-  /* Content stays visible at rest; it only drifts into place. */
+  /* ---------- Animations (GSAP + ScrollTrigger) ---------- */
   if(hasGsap && !reduce){
-    gsap.from(".hero .rise", { y: 34, duration: 1.2, ease: "power3.out", stagger: 0.09, delay: 0.1 });
-    ScrollTrigger.batch("main .band .rise", {
-      once: true, start: "top 92%",
-      onEnter: function(els){ gsap.from(els, { y: 46, duration: 1.1, ease: "power3.out", stagger: 0.07 }); }
+    root.classList.add("anim");
+
+    // Hero: the name rises letter by letter, the arch photo opens up
+    var nameEl = document.querySelector(".hero .name");
+    if(nameEl){
+      nameEl.innerHTML = nameEl.textContent.split("").map(function(c){ return '<span class="ch">' + c + '</span>'; }).join("");
+      gsap.from(".hero .name .ch", { yPercent: 115, rotate: 8, duration: 1.2, ease: "power4.out", stagger: .06, delay: .15 });
+    }
+    gsap.from(".hero .rise:not(.name):not(.ph)", { y: 30, duration: 1.1, ease: "power3.out", stagger: .08, delay: .45 });
+    gsap.fromTo(".hero-photo", { clipPath: "inset(40% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.8, ease: "expo.out", delay: .35 });
+    gsap.fromTo(".hero-photo img", { scale: 1.35 }, { scale: 1.08, duration: 2.2, ease: "expo.out", delay: .35 });
+
+    // Section titles: words slide up from behind a mask
+    document.querySelectorAll("main .band h2").forEach(function(h){
+      h.innerHTML = h.textContent.trim().split(/\s+/).map(function(w){ return '<span class="w"><span>' + w + '</span></span>'; }).join(" ");
+      gsap.from(h.querySelectorAll(".w > span"), { yPercent: 110, duration: 1.05, ease: "power4.out", stagger: .05,
+        scrollTrigger: { trigger: h, start: "top 88%", once: true } });
     });
+
+    // Kicker lines draw in
+    ScrollTrigger.batch(".kicker", { once: true, start: "top 92%", onEnter: function(els){ els.forEach(function(e){ e.classList.add("on"); }); } });
+
+    // Text blocks and cards drift up
+    ScrollTrigger.batch("main .band .rise:not(.ph)", { once: true, start: "top 92%",
+      onEnter: function(els){ gsap.from(els, { y: 46, duration: 1.1, ease: "power3.out", stagger: .07 }); } });
+
+    // Photos: a curtain reveal from the bottom, the image settles in, then a soft parallax
+    var phs = gsap.utils.toArray("main .band .ph");
+    phs.forEach(function(ph){
+      var media = ph.querySelector("img, video");
+      gsap.set(ph, { clipPath: "inset(38% 0% 0% 0%)", y: 40 });
+      if(media) gsap.set(media, { scale: 1.32 });
+    });
+    ScrollTrigger.batch(phs, { once: true, start: "top 92%",
+      onEnter: function(els){
+        els.forEach(function(ph, i){
+          var media = ph.querySelector("img, video");
+          gsap.to(ph, { clipPath: "inset(0% 0% 0% 0%)", y: 0, duration: 1.5, ease: "expo.out", delay: i * .09 });
+          if(media) gsap.to(media, { scale: 1.1, duration: 2, ease: "expo.out", delay: i * .09 });
+        });
+      } });
+    phs.forEach(function(ph){
+      var media = ph.querySelector("img, video");
+      if(media) gsap.fromTo(media, { yPercent: 5 }, { yPercent: -5, ease: "none",
+        scrollTrigger: { trigger: ph, start: "top bottom", end: "bottom top", scrub: true } });
+    });
+
+    // The kilim band weaves across
+    gsap.utils.toArray(".kilim").forEach(function(k){
+      gsap.from(k, { scaleX: 0, transformOrigin: "left center", duration: 1.6, ease: "expo.out", scrollTrigger: { trigger: k, start: "top 92%", once: true } });
+    });
+
+    // Fact rows slide in one by one
+    gsap.from(".facts > div", { x: -24, duration: .9, ease: "power3.out", stagger: .08, scrollTrigger: { trigger: ".facts", start: "top 88%", once: true } });
+
+    // Chips pop in
+    gsap.utils.toArray(".chips").forEach(function(c){
+      gsap.from(c.children, { scale: .6, duration: .6, ease: "back.out(2)", stagger: .05, scrollTrigger: { trigger: c, start: "top 92%", once: true } });
+    });
+
+    // The string lights swing down into place
+    gsap.from(".garland", { yPercent: -60, rotate: -1.5, duration: 1.8, ease: "elastic.out(1, .5)", scrollTrigger: { trigger: ".garland", start: "top 90%", once: true } });
+
+    window.addEventListener("load", function(){ ScrollTrigger.refresh(); });
   }
 
   /* ---------- The sky ---------- */
