@@ -7,7 +7,7 @@
 <meta property="og:title" content="Ledhas · Gîte à Timimoun">
 <meta property="og:description" content="Grandes chambres spacieuses à Massine, Timimoun. Quad dans les dunes, évasions thématiques, team building et soirées musicales.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://ledhas.vercel.app/img/quad-coucher.jpg">
+<meta property="og:image" content="https://ledhas.vercel.app/img/patio.jpg">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -370,6 +370,11 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
 @media (max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.tiles{grid-template-columns:minmax(0,1fr)}.tile .ph{aspect-ratio:4/3.4}}
 
+.tile-wide{grid-column:1/-1;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(18px,3vw,40px);align-items:center;margin-top:clamp(8px,1.5vw,18px)}
+.tile-wide .ph{aspect-ratio:368/560}
+.tile-wide p{max-width:52ch}
+@media (max-width:560px){.tile-wide{grid-template-columns:minmax(0,150px) minmax(0,1fr)}.tile-wide .ph{aspect-ratio:368/600}}
+
 /* Escape cards with photo */
 .card .ph{aspect-ratio:16/9;border-radius:14px;margin-bottom:4px}
 
@@ -419,6 +424,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     <a class="brand" href="#top" aria-label="Ledhas, retour en haut"><img class="seal-sm" src="logo/ledhas-logo-320.webp" alt="" width="44" height="44"><b>Ledhas</b></a>
     <nav class="links" aria-label="Sections">
       <a href="#gite">Le gîte</a>
+      <a href="#lieu">Le lieu</a>
       <a href="#chambres">Chambres</a>
       <a href="#decouvrir">Découvrir</a>
       <a href="#quad">Quad</a>
@@ -456,8 +462,8 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       </div>
       <div class="hero-photo-wrap">
       <figure class="ph hero-photo rise">
-          <img src="https://images.unsplash.com/photo-1770066814828-2027a6d9f053?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="Ancien ksar sur les dunes de Timimoun au coucher du soleil" fetchpriority="high">
-          <figcaption>Timimoun, l'oasis rouge</figcaption>
+          <img src="img/toits.jpg" alt="Les toits en terre rouge de Ledhas face à la palmeraie" fetchpriority="high">
+          <figcaption>Ledhas, face à la palmeraie</figcaption>
         </figure>
         <img class="hero-stamp" src="logo/ledhas-logo-320.webp" alt="Logo Ledhas Timimoun" width="150" height="150">
       </div>
@@ -483,6 +489,26 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
           <figure class="ph room-b"><img loading="lazy" src="img/chambre-lampe.jpg" alt="Lampe artisanale et table de nuit en bois dans une chambre de Ledhas"><figcaption>Le soir, à la lampe</figcaption></figure>
         </div>
         <p class="note">Plafond traditionnel, vannerie et lumière douce. Les vraies chambres de Ledhas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band gallery-band" id="lieu">
+    <div class="wrap">
+      <div class="head-row rise">
+        <div class="stack">
+          <p class="kicker">Le lieu</p>
+          <h2>Murs rouges, palmiers et ciel bleu</h2>
+        </div>
+        <p class="lead">Une cour à l'ombre des palmiers, une terrasse sur la palmeraie et des murs en terre rouge comme les ksour de Timimoun.</p>
+      </div>
+      <div class="kilim" aria-hidden="true"></div>
+      <div class="gallery">
+        <button class="ph g-big rise" type="button" data-full="img/patio.jpg"><img loading="lazy" src="img/patio.jpg" alt="La cour de Ledhas avec ses banquettes, ses coussins et son mur rouge décoré"><figcaption>La cour</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/exterieur.jpg"><img loading="lazy" src="img/exterieur.jpg" alt="Le bâtiment rouge de Ledhas entre les palmiers"><figcaption>Le gîte</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/portes.jpg"><img loading="lazy" src="img/portes.jpg" alt="Portes en bois des chambres dans le mur rouge"><figcaption>Les portes des chambres</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/terrasse.jpg"><img loading="lazy" src="img/terrasse.jpg" alt="Vue sur la palmeraie depuis la terrasse ombragée"><figcaption>La terrasse</figcaption></button>
+        <button class="ph rise" type="button" data-full="img/jardin.jpg"><img loading="lazy" src="img/jardin.jpg" alt="Le jardin de palmiers devant les murs rouges"><figcaption>Le jardin</figcaption></button>
       </div>
     </div>
   </section>
@@ -520,34 +546,41 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       </div>
       <div class="tiles">
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1667589177164-10f38558e923?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Les grandes dunes de Timimoun"></figure>
+          <figure class="ph"><img loading="lazy" src="img/dune.jpg" alt="Dune de sable au soleil couchant près de Timimoun"></figure>
           <h3>Les grandes dunes</h3>
           <p>Marches dans l'erg et couchers de soleil sur le sable.</p>
         </article>
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1770066814788-b3a3c11f51bc?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Randonneurs vers un ancien ksar dans les dunes de Timimoun"></figure>
+          <figure class="ph"><img loading="lazy" src="img/ksar-ruines.jpg" alt="Ancien ksar en ruine sur un rocher près de Timimoun"></figure>
           <h3>Les ksour</h3>
           <p>Les villages fortifiés en terre rouge, qui donnent son nom à l'oasis rouge.</p>
         </article>
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1632257996200-cb89e88cac8d?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Rochers et sable dans le Sahara algérien"></figure>
+          <figure class="ph"><img loading="lazy" src="img/grotte.jpg" alt="Visiteur en chèche jaune à l'entrée d'une grotte de grès rouge"></figure>
           <h3>Les grottes</h3>
-          <p>Des sorties vers les grottes et les sites rocheux de la région.</p>
+          <p>Les grottes de grès rouge et les rochers sculptés par le vent.</p>
         </article>
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1627477574861-1426f26e82dc?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Promenade à dos de dromadaire dans le désert algérien"></figure>
+          <figure class="ph"><img loading="lazy" src="img/foulards.jpg" alt="Chèches et foulards colorés vendus dans une grotte"></figure>
           <h3>La culture</h3>
-          <p>Traditions, artisanat et rencontres avec les habitants.</p>
+          <p>Chèches, artisanat et rencontres avec les habitants du Gourara.</p>
         </article>
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1667589177162-0600e57d7112?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Sebkha et dunes près de Timimoun"></figure>
+          <figure class="ph"><img loading="lazy" src="img/khaima.jpg" alt="Repas sous la khaïma de Ledhas"></figure>
           <h3>La gastronomie</h3>
-          <p>La cuisine du Sud, servie au gîte sur commande.</p>
+          <p>La cuisine du Sud, servie sous la khaïma, sur commande.</p>
         </article>
         <article class="tile rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1672509805242-ceaf4eee21d7?auto=format&amp;fit=crop&amp;w=900&amp;q=70" alt="Pleine lune derrière les palmiers"></figure>
+          <figure class="ph"><img loading="lazy" src="img/soiree.jpg" alt="Soirée musicale avec oud dans la cour de Ledhas"></figure>
           <h3>La musique</h3>
-          <p>Les rythmes du Gourara, à écouter le soir au gîte.</p>
+          <p>Oud et chants du Gourara, le soir dans la cour du gîte.</p>
+        </article>
+        <article class="tile tile-wide rise">
+          <figure class="ph"><video src="video/foggara.mp4" poster="img/foggara-poster.jpg" muted loop playsinline autoplay preload="metadata" aria-label="L'eau qui coule dans une foggara"></video></figure>
+          <div class="stack">
+            <h3>Les foggaras</h3>
+            <p>Le génie de l'oasis : des galeries creusées sous le sable qui amènent l'eau jusqu'aux jardins, et la partagent entre les familles. À voir couler de près, à quelques pas de la palmeraie.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -617,14 +650,14 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       </div>
       <div class="duo">
         <article class="card rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628676149820-de1d7edd9647?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Groupe marchant dans le désert algérien"></figure>
+          <figure class="ph"><img loading="lazy" src="img/dromadaire.jpg" alt="Balade à dos de dromadaire près de la palmeraie"></figure>
           <h3>Évasions thématiques</h3>
           <p>Un séjour à Timimoun organisé autour d'une envie : le désert, les ksour, la culture ou la musique.</p>
           <ul class="chips"><li>Dunes</li><li>Ksour</li><li>Grottes</li><li>Gastronomie</li><li>Musique</li></ul>
           <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="Évasion thématique">Demander un programme</a></div>
         </article>
         <article class="card rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628491099146-831834847c0d?auto=format&amp;fit=crop&amp;w=1200&amp;q=70" alt="Groupe assis sur le sable dans le Sahara"></figure>
+          <figure class="ph"><img loading="lazy" src="img/grottes.jpg" alt="Groupe en randonnée sur les rochers au coucher du soleil"></figure>
           <h3>Team building</h3>
           <p>Sortez votre équipe du bureau : activités dans le désert, temps ensemble et soirées au gîte.</p>
           <ul class="chips"><li>Entreprises</li><li>Groupes</li><li>Programme sur mesure</li></ul>
@@ -645,7 +678,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       </div>
       <div class="events">
         <article class="event rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1643326626216-f605fd0f654d?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Rochers sous un ciel de nuit étoilé"></figure>
+          <figure class="ph"><img loading="lazy" src="img/soiree.jpg" alt="Soirée musicale dans la cour de Ledhas"></figure>
           <div class="event-body">
             <span class="badge">Bientôt</span>
             <h3>Soirée musicale sous les étoiles</h3>
@@ -655,7 +688,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
           </div>
         </article>
         <article class="event rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1628676148873-6ca4095f3eeb?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Dunes de sable sous un ciel bleu"></figure>
+          <figure class="ph"><img loading="lazy" src="img/rocher-2.jpg" alt="Rocher sculpté par le vent dans le désert de Timimoun"></figure>
           <div class="event-body">
             <span class="badge">Bientôt</span>
             <h3>Évasion dans les dunes</h3>
@@ -665,7 +698,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
           </div>
         </article>
         <article class="event rise">
-          <figure class="ph"><img loading="lazy" src="https://images.unsplash.com/photo-1630212372267-c505a3dee6b9?auto=format&amp;fit=crop&amp;w=1000&amp;q=70" alt="Groupe marchant dans le désert"></figure>
+          <figure class="ph"><img loading="lazy" src="img/falaise.jpg" alt="Pause au sommet d'une falaise de grès rouge"></figure>
           <div class="event-body">
             <span class="badge">Bientôt</span>
             <h3>Team building au désert</h3>
@@ -749,7 +782,6 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     <div class="foot-seal"><img src="logo/ledhas-logo-320.webp" alt="Logo Ledhas Timimoun" width="120" height="120" loading="lazy"></div>
     <span>© 2026 Ledhas · Massine, Timimoun</span>
     <span>Site réalisé par <a href="https://nova-web-dz.vercel.app" target="_blank" rel="noopener">Nova Web Dz</a></span>
-    <p class="credits">Photos d'illustration via Unsplash : Hichem Meghachou, Romain Virtuel, Hani Ryad, Halima Bouchouicha, Azzedine Rouichi, Mohcen Cherifi, Achoub Mouad, radwan menzer.</p>
   </div>
 </footer>
 
