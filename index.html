@@ -21,7 +21,7 @@ img{max-width:100%}
 <meta name="description" content="Ledhas, gîte à Massine, Timimoun. Grandes chambres spacieuses, petit-déjeuner inclus, découvertes du désert, évasions thématiques, team building et soirées musicales.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=Reem+Kufi:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi:wght@500;700&display=swap">
 <style>
 /* Layout: a procedural Timimoun sky fixed behind wide, left-weighted full-bleed bands; scrolling moves the day from dawn to night */
 :root{
@@ -154,7 +154,28 @@ p{margin:0;max-width:60ch}
 .name-ar{font-family:var(--arabic);font-weight:700;font-size:clamp(2rem,5.4vw,4rem);line-height:1;color:var(--clay);transition:color .7s}
 .tagline{font-family:var(--display);font-size:clamp(1.3rem,2.2vw,1.8rem);font-style:italic;line-height:1.2;color:var(--ink);margin:-6px 0 0}
 .hero-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:28px 48px;margin-top:8px}
-.hero-row .lead{max-width:40ch}
+.hero-row .lead{max-width:52ch}
+.hero-copy{display:grid;gap:12px;min-width:0}
+.hero-sum{font-weight:600;max-width:52ch}
+.nav-end{display:flex;align-items:center;gap:10px}
+.lang{display:flex;padding:4px;border-radius:999px;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .7s,border-color .7s}
+.lang button{font:600 .8rem/1 var(--body);color:var(--ink);background:transparent;border:0;border-radius:999px;padding:8px 10px;min-width:36px;cursor:pointer;transition:background .25s,color .25s}
+.lang button[lang="ar"]{font-family:"IBM Plex Sans Arabic",var(--arabic);font-size:.95rem}
+.lang button[aria-pressed="true"]{background:var(--clay);color:var(--clay-ink)}
+@media (max-width:520px){.wa-label{display:none}.nav-end .btn-wa{padding:10px 12px}}
+.form-note{margin:-6px 0 0;font-size:.9rem;color:var(--ink-2);min-height:1.2em}
+.form-error{margin:0;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,#c0392b 18%,transparent);border:1px solid color-mix(in srgb,#c0392b 50%,transparent);font-size:.92rem}
+.foot-slogan{flex-basis:100%;margin:0;font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--ink)}
+/* Arabic, right to left */
+[dir="rtl"]{--body:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;--mono:"IBM Plex Sans Arabic","Noto Kufi Arabic",Tahoma,sans-serif;--display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif}
+[dir="rtl"] *{letter-spacing:0!important}
+[dir="rtl"] .name,[dir="rtl"] .brand b{font-family:"Gloock","Times New Roman",Georgia,serif}
+[dir="rtl"] .tagline,[dir="rtl"] .foot-slogan{font-style:normal}
+[dir="rtl"] .kicker,[dir="rtl"] .facts dt,[dir="rtl"] label,[dir="rtl"] .info dt,[dir="rtl"] .ph figcaption{text-transform:none;font-size:.9rem}
+[dir="rtl"] #sky{transform:scaleX(-1)}
+[dir="rtl"] .hero-stamp{left:auto;right:clamp(-64px,-4vw,-24px)}
+@media (max-width:900px){[dir="rtl"] .hero-stamp{right:14px}}
+[dir="rtl"] .grid6 article:nth-child(2n),[dir="rtl"] .tile-wide p{text-align:right}
 .ctas{display:flex;flex-wrap:wrap;gap:12px}
 
 /* ---------- Bands ---------- */
@@ -432,25 +453,33 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       <a href="#evenements">Événements</a>
       <a href="#reserver">Réserver</a>
     </nav>
+    <div class="nav-end">
+    <div class="lang" role="group" aria-label="Langue">
+      <button type="button" data-lang="fr" aria-pressed="true">FR</button><button type="button" data-lang="ar" lang="ar" aria-pressed="false">ع</button><button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
     <a class="btn btn-wa btn-sm js-wa" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
-      WhatsApp
+      <span class="wa-label">WhatsApp</span>
     </a>
+    </div>
   </div>
 </header>
 
-<div class="clock" aria-hidden="true"><i></i><strong id="clockTime">06:40</strong><em id="clockLabel">Aube</em></div>
+<div class="clock" aria-hidden="true"><i></i><strong id="clockTime">06:40</strong><em id="clockLabel" data-dyn>Aube</em></div>
 
 <main id="top">
   <section class="hero" data-moment="0">
     <div class="wrap hero-grid">
       <div class="hero-text">
-      <p class="coords rise">Gîte · Massine, Timimoun · 29°17′08″N 0°14′30″E</p>
+      <p class="coords rise">Gîte · Massine, Timimoun · <bdi dir="ltr">29°17′08″N 0°14′30″E</bdi></p>
       <h1 class="name rise">Ledhas</h1>
       <p class="name-ar rise" lang="ar" dir="rtl">لدهاس</p>
-      <p class="tagline rise">Lieu de joie, de spectacle et de vie</p>
+      <p class="tagline rise">À Ledhas, le désert n’est pas seulement un paysage : c’est l’horizon de votre séjour.</p>
       <div class="hero-row rise">
-        <p class="lead">De grandes chambres spacieuses aux portes des dunes de Timimoun. Le jour, on part découvrir l'oasis rouge. Le soir, on se retrouve en musique.</p>
+        <div class="hero-copy">
+          <p class="lead">Offrez-vous une escapade au cœur du Sahara au gîte Ledhas. Situé à Massine, à proximité de Timimoun, notre établissement vous accueille dans de grandes chambres spacieuses et confortables. Profitez d’un petit-déjeuner inclus et d’un cadre paisible, face aux dunes du désert.</p>
+          <p class="hero-sum">Confort, authenticité et dépaysement : tout est réuni pour un séjour inoubliable.</p>
+        </div>
         <div class="ctas">
           <a class="btn btn-wa js-wa" href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
@@ -475,11 +504,12 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
       <div class="stack rise">
         <p class="kicker">Le matin</p>
         <h2>Un gîte, de grandes chambres spacieuses</h2>
-        <p class="lead">Ledhas se trouve à Massine, à Timimoun. Vous vous réveillez face au désert et le petit-déjeuner vous attend.</p>
+        <p class="lead">Chambres doubles, triples ou quadruples, avec la possibilité d’ajouter un matelas supplémentaire. Le petit-déjeuner est inclus ; la demi-pension et la pension complète sont proposées sur demande.</p>
         <dl class="facts">
-          <div><dt>Chambres</dt><dd>Grandes et spacieuses</dd></div>
+          <div><dt>Chambres</dt><dd>Doubles, triples, quadruples</dd></div>
+          <div><dt>Matelas supplémentaire</dt><dd>Possible</dd></div>
           <div><dt>Petit-déjeuner</dt><dd>Inclus</dd></div>
-          <div><dt>Déjeuner et dîner</dt><dd>Sur commande</dd></div>
+          <div><dt>Pension</dt><dd>Demi-pension ou complète</dd></div>
           <div><dt>Tarifs</dt><dd>Sur demande</dd></div>
         </dl>
       </div>
@@ -634,7 +664,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
         <p class="kicker">L'accueil</p>
         <h2>Le thé, versé de haut, face au désert</h2>
         <p class="lead">À Ledhas, la journée se termine en haut, sur un tapis, avec le thé préparé à l'ancienne pendant que le soleil descend sur la palmeraie.</p>
-        <div><button class="btn btn-ghost btn-sm" type="button" id="teaToggle" aria-pressed="true">Mettre la vidéo en pause</button></div>
+        <div><button class="btn btn-ghost btn-sm" type="button" id="teaToggle" data-dyn aria-pressed="true">Mettre la vidéo en pause</button></div>
       </div>
     </div>
   </section>
@@ -654,14 +684,14 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
           <h3>Évasions thématiques</h3>
           <p>Un séjour à Timimoun organisé autour d'une envie : le désert, les ksour, la culture ou la musique.</p>
           <ul class="chips"><li>Dunes</li><li>Ksour</li><li>Grottes</li><li>Gastronomie</li><li>Musique</li></ul>
-          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="Évasion thématique">Demander un programme</a></div>
+          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="evasion">Demander un programme</a></div>
         </article>
         <article class="card rise">
           <figure class="ph"><img loading="lazy" src="img/grottes.jpg" alt="Groupe en randonnée sur les rochers au coucher du soleil"></figure>
           <h3>Team building</h3>
           <p>Sortez votre équipe du bureau : activités dans le désert, temps ensemble et soirées au gîte.</p>
           <ul class="chips"><li>Entreprises</li><li>Groupes</li><li>Programme sur mesure</li></ul>
-          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="Team building">Demander un devis</a></div>
+          <div><a class="btn btn-ghost btn-sm" href="#reserver" data-formule="team">Demander un devis</a></div>
         </article>
       </div>
     </div>
@@ -684,7 +714,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
             <h3>Soirée musicale sous les étoiles</h3>
             <p class="event-date">Date bientôt annoncée</p>
             <p>Musique du Gourara, dîner et nuit au gîte.</p>
-            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="la prochaine soirée musicale">Me prévenir</a>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="soiree">Me prévenir</a>
           </div>
         </article>
         <article class="event rise">
@@ -694,7 +724,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
             <h3>Évasion dans les dunes</h3>
             <p class="event-date">Date bientôt annoncée</p>
             <p>Un séjour thématique : dunes, ksour et coucher de soleil.</p>
-            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="la prochaine évasion dans les dunes">Me prévenir</a>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="dunes">Me prévenir</a>
           </div>
         </article>
         <article class="event rise">
@@ -704,7 +734,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
             <h3>Team building au désert</h3>
             <p class="event-date">Date bientôt annoncée</p>
             <p>Une journée d'activités pour les équipes et les entreprises.</p>
-            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="le prochain team building">Me prévenir</a>
+            <a class="btn btn-ghost btn-sm js-notify" href="#" target="_blank" rel="noopener" data-event="team">Me prévenir</a>
           </div>
         </article>
       </div>
@@ -728,27 +758,53 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
             <label class="full" for="f-nom">Nom complet
               <input id="f-nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom">
             </label>
-            <label for="f-arrivee">Arrivée
+            <label for="f-arrivee">Date d’arrivée
               <input id="f-arrivee" name="arrivee" type="date">
             </label>
-            <label for="f-nuits">Nuits
-              <input id="f-nuits" name="nuits" type="number" min="1" max="30" value="2" inputmode="numeric">
+            <label for="f-depart">Date de départ
+              <input id="f-depart" name="depart" type="date">
             </label>
-            <label for="f-pers">Personnes
-              <input id="f-pers" name="pers" type="number" min="1" max="60" value="2" inputmode="numeric">
+            <p class="full form-note" id="nights" aria-live="polite"></p>
+            <label for="f-adultes">Adultes
+              <input id="f-adultes" name="adultes" type="number" min="1" max="40" value="2" inputmode="numeric">
             </label>
-            <label for="f-formule">Formule
+            <label for="f-enfants">Enfants
+              <input id="f-enfants" name="enfants" type="number" min="0" max="20" value="0" inputmode="numeric">
+            </label>
+            <label for="f-chambre">Type de chambre
+              <select id="f-chambre" name="chambre">
+                <option value="double">Chambre double</option>
+                <option value="triple">Chambre triple</option>
+                <option value="quadruple">Chambre quadruple</option>
+              </select>
+            </label>
+            <label for="f-matelas">Matelas supplémentaire
+              <select id="f-matelas" name="matelas">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1 matelas</option>
+                <option value="2">Oui, 2 matelas</option>
+              </select>
+            </label>
+            <label for="f-pension">Pension
+              <select id="f-pension" name="pension">
+                <option value="pdj">Petit-déjeuner inclus</option>
+                <option value="demi">Demi-pension</option>
+                <option value="complete">Pension complète</option>
+              </select>
+            </label>
+            <label for="f-formule">Activité
               <select id="f-formule" name="formule">
-                <option>Séjour au gîte</option>
-                <option>Évasion thématique</option>
-                <option>Team building</option>
-                <option>Soirée musicale</option>
-                <option>Sortie en quad</option>
+                <option value="aucune">Séjour au gîte</option>
+                <option value="quad">Sortie en quad</option>
+                <option value="evasion">Évasion thématique</option>
+                <option value="team">Team building</option>
+                <option value="soiree">Soirée musicale</option>
               </select>
             </label>
             <label class="full" for="f-msg">Message
-              <textarea id="f-msg" name="msg" placeholder="Une précision, une question…"></textarea>
+              <textarea id="f-msg" name="msg" placeholder="Âge des enfants, une précision, une question…"></textarea>
             </label>
+            <p class="full form-error" id="formError" role="alert" hidden></p>
             <a class="btn btn-wa send full" id="waSend" href="#" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.5A8.5 8.5 0 1 1 21 11.5Z"/></svg>
               Envoyer la demande sur WhatsApp
@@ -761,14 +817,15 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
             <div><dt>Adresse</dt><dd>Massine, Timimoun, Algérie</dd></div>
             <div>
               <dt>Coordonnées</dt>
-              <dd>29°17′08″N 0°14′30″E</dd>
+              <dd dir="ltr">29°17′08″N 0°14′30″E</dd>
               <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=29.285652,0.241852" target="_blank" rel="noopener">Ouvrir dans Google Maps →</a>
             </div>
             <div>
               <dt>WhatsApp</dt>
-              <dd class="num"><code id="numText">+213 550 58 11 96</code><button class="copy" id="copyNum" type="button">Copier</button></dd>
+              <dd class="num"><code id="numText" dir="ltr">+213 550 58 11 96</code><button class="copy" id="copyNum" type="button" data-dyn>Copier</button></dd>
             </div>
-            <div><dt>Repas</dt><dd>Petit-déjeuner inclus. Déjeuner et dîner sur commande.</dd></div>
+            <div><dt>Chambres</dt><dd>Double, triple ou quadruple. Matelas supplémentaire possible.</dd></div>
+            <div><dt>Repas</dt><dd>Petit-déjeuner inclus. Demi-pension ou pension complète sur demande.</dd></div>
             <div><dt>Tarifs</dt><dd>Sur demande, selon la saison et la formule.</dd></div>
           </dl>
         </div>
@@ -780,6 +837,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
 <footer>
   <div class="wrap">
     <div class="foot-seal"><img src="logo/ledhas-logo-320.webp" alt="Logo Ledhas Timimoun" width="120" height="120" loading="lazy"></div>
+    <p class="foot-slogan">Lieu de joie, de spectacle et de vie</p>
     <span>© 2026 Ledhas · Massine, Timimoun</span>
     <span>Site réalisé par <a href="https://nova-web-dz.vercel.app" target="_blank" rel="noopener">Nova Web Dz</a></span>
   </div>
@@ -797,57 +855,154 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var root = document.documentElement;
 
+  /* ---------- Langues : français (source), English, العربية ---------- */
+  var DICT = {"Gîte · Massine, Timimoun ·":["Guesthouse · Massine, Timimoun ·","نُزُل · ماسين، تيميمون ·"],"Ledhas, retour en haut":["Ledhas, back to top","لدهاس، العودة إلى الأعلى"],"Sections":["Sections","الأقسام"],"Le gîte":["The guesthouse","النُزُل"],"Le lieu":["The place","المكان"],"Chambres":["Rooms","الغرف"],"Découvrir":["Discover","اكتشف"],"Quad":["Quad","الكواد"],"Évasions":["Getaways","الرحلات"],"Événements":["Events","الفعاليات"],"Réserver":["Book","احجز"],"Langue":["Language","اللغة"],"WhatsApp":["WhatsApp","واتساب"],"Team building":["Team building","بناء الفريق"],"Gîte · Massine, Timimoun · 29°17′08″N 0°14′30″E":["Guesthouse · Massine, Timimoun · 29°17′08″N 0°14′30″E","نُزُل · ماسين، تيميمون · 29°17′08″N 0°14′30″E"],"À Ledhas, le désert n’est pas seulement un paysage : c’est l’horizon de votre séjour.":["At Ledhas, the desert is more than a landscape: it is the horizon of your stay.","في لدهاس، الصحراء ليست مجرد منظر طبيعي، بل هي أفق إقامتكم."],"Offrez-vous une escapade au cœur du Sahara au gîte Ledhas. Situé à Massine, à proximité de Timimoun, notre établissement vous accueille dans de grandes chambres spacieuses et confortables. Profitez d’un petit-déjeuner inclus et d’un cadre paisible, face aux dunes du désert.":["Treat yourself to a getaway in the heart of the Sahara at Ledhas guesthouse. Located in Massine, near Timimoun, we welcome you in large, spacious and comfortable rooms. Enjoy breakfast included and a peaceful setting facing the desert dunes.","امنحوا أنفسكم رحلة إلى قلب الصحراء في نُزُل لدهاس. يقع نُزُلنا في ماسين بالقرب من تيميمون، ويستقبلكم في غرف كبيرة وواسعة ومريحة. استمتعوا بفطور الصباح المشمول وبأجواء هادئة تطل على كثبان الصحراء."],"Confort, authenticité et dépaysement : tout est réuni pour un séjour inoubliable.":["Comfort, authenticity and a true change of scenery: everything is here for an unforgettable stay.","الراحة والأصالة وتغيير الأجواء: كل شيء متوفر لإقامة لا تُنسى."],"Réserver sur WhatsApp":["Book on WhatsApp","احجز عبر واتساب"],"Voir le gîte":["See the guesthouse","اكتشف النُزُل"],"Les toits en terre rouge de Ledhas face à la palmeraie":["The red earth rooftops of Ledhas facing the palm grove","أسطح لدهاس الطينية الحمراء المطلة على واحة النخيل"],"Ledhas, face à la palmeraie":["Ledhas, facing the palm grove","لدهاس، في مواجهة واحة النخيل"],"Logo Ledhas Timimoun":["Ledhas Timimoun logo","شعار لدهاس تيميمون"],"Le matin":["Morning","الصباح"],"Un gîte, de grandes chambres spacieuses":["A guesthouse with large, spacious rooms","نُزُل بغرف كبيرة وواسعة"],"Chambres doubles, triples ou quadruples, avec la possibilité d’ajouter un matelas supplémentaire. Le petit-déjeuner est inclus ; la demi-pension et la pension complète sont proposées sur demande.":["Double, triple or quadruple rooms, with the option of an extra mattress. Breakfast is included; half board and full board are available on request.","غرف ثنائية أو ثلاثية أو رباعية، مع إمكانية إضافة فراش إضافي. فطور الصباح مشمول، ونوفّر نصف الإقامة والإقامة الكاملة عند الطلب."],"Doubles, triples, quadruples":["Double, triple, quadruple","ثنائية، ثلاثية، رباعية"],"Matelas supplémentaire":["Extra mattress","فراش إضافي"],"Possible":["Available","متوفر"],"Petit-déjeuner":["Breakfast","فطور الصباح"],"Inclus":["Included","مشمول"],"Pension":["Meal plan","الوجبات"],"Demi-pension ou complète":["Half board or full board","نصف إقامة أو إقامة كاملة"],"Tarifs":["Rates","الأسعار"],"Sur demande":["On request","عند الطلب"],"Chambre de Ledhas : grand lit, plafond traditionnel et paniers tressés":["Ledhas room: large bed, traditional ceiling and woven baskets","غرفة في لدهاس: سرير كبير وسقف تقليدي وسلال منسوجة"],"Une chambre de Ledhas":["A room at Ledhas","غرفة في لدهاس"],"Lampe artisanale et table de nuit en bois dans une chambre de Ledhas":["Handmade lamp and wooden bedside table in a Ledhas room","مصباح تقليدي وطاولة خشبية بجانب السرير في غرفة بلدهاس"],"Le soir, à la lampe":["Evening, by lamplight","المساء، على ضوء المصباح"],"Plafond traditionnel, vannerie et lumière douce. Les vraies chambres de Ledhas.":["Traditional ceiling, basketry and soft light. The real rooms of Ledhas.","سقف تقليدي وسلال منسوجة وضوء هادئ. هذه غرف لدهاس الحقيقية."],"Murs rouges, palmiers et ciel bleu":["Red walls, palm trees and blue sky","جدران حمراء ونخيل وسماء زرقاء"],"Une cour à l'ombre des palmiers, une terrasse sur la palmeraie et des murs en terre rouge comme les ksour de Timimoun.":["A courtyard in the shade of palm trees, a terrace over the palm grove and red earth walls like the ksour of Timimoun.","فناء في ظل النخيل، وشرفة تطل على الواحة، وجدران من الطين الأحمر مثل قصور تيميمون."],"La cour de Ledhas avec ses banquettes, ses coussins et son mur rouge décoré":["The Ledhas courtyard with its benches, cushions and decorated red wall","فناء لدهاس بمقاعده ووسائده وجداره الأحمر المزخرف"],"La cour":["The courtyard","الفناء"],"Le bâtiment rouge de Ledhas entre les palmiers":["The red Ledhas building among the palm trees","مبنى لدهاس الأحمر بين النخيل"],"Portes en bois des chambres dans le mur rouge":["Wooden room doors in the red wall","أبواب الغرف الخشبية في الجدار الأحمر"],"Les portes des chambres":["The room doors","أبواب الغرف"],"Vue sur la palmeraie depuis la terrasse ombragée":["View of the palm grove from the shaded terrace","منظر واحة النخيل من الشرفة المظللة"],"La terrasse":["The terrace","الشرفة"],"Le jardin de palmiers devant les murs rouges":["The palm garden in front of the red walls","حديقة النخيل أمام الجدران الحمراء"],"Le jardin":["The garden","الحديقة"],"Les chambres":["The rooms","الغرف"],"Des chambres spacieuses, une même douceur":["Spacious rooms, the same warm comfort","غرف واسعة ودفء واحد"],"Plafonds traditionnels, tapis tissés, vannerie et lumière douce. Toutes les photos sont prises à Ledhas.":["Traditional ceilings, woven rugs, basketry and soft light. Every photo was taken at Ledhas.","أسقف تقليدية وزرابي منسوجة وسلال وضوء هادئ. كل الصور التُقطت في لدهاس."],"Chambre de Ledhas avec un lit double et un lit simple":["Ledhas room with a double bed and a single bed","غرفة في لدهاس بسرير مزدوج وسرير فردي"],"Lit double et lit simple":["Double bed and single bed","سرير مزدوج وسرير فردي"],"Chambre vue derrière le rideau tissé rouge suspendu à l'entrée":["Room seen from behind the red woven curtain hanging in the doorway","غرفة تظهر خلف الستار المنسوج الأحمر المعلّق عند المدخل"],"Derrière le rideau tissé":["Behind the woven curtain","خلف الستار المنسوج"],"Chambre en longueur vers la porte en bois":["Long room leading to the wooden door","غرفة طويلة تؤدي إلى الباب الخشبي"],"Vers la porte en bois":["Toward the wooden door","نحو الباب الخشبي"],"Lit simple, lampe et tissage rouge au mur":["Single bed, lamp and red weaving on the wall","سرير فردي ومصباح ونسيج أحمر على الجدار"],"Le coin lit simple":["The single-bed corner","ركن السرير الفردي"],"Salle de bain avec miroir en corde":["Bathroom with a rope mirror","حمّام بمرآة مؤطّرة بالحبال"],"La salle de bain":["The bathroom","الحمّام"],"Photo agrandie":["Enlarged photo","صورة مكبّرة"],"Fermer":["Close","إغلاق"],"L'après-midi":["Afternoon","بعد الظهر"],"Les mystères de Timimoun":["The mysteries of Timimoun","أسرار تيميمون"],"On vous emmène là où se trouve le vrai Timimoun, entre le sable, la terre rouge et les traditions du Gourara.":["We take you to the real Timimoun, among sand, red earth and the traditions of the Gourara.","نأخذكم إلى تيميمون الحقيقية، بين الرمال والتربة الحمراء وتقاليد منطقة قورارة."],"Dune de sable au soleil couchant près de Timimoun":["Sand dune at sunset near Timimoun","كثيب رملي عند الغروب قرب تيميمون"],"Les grandes dunes":["The great dunes","الكثبان الكبرى"],"Marches dans l'erg et couchers de soleil sur le sable.":["Walks in the erg and sunsets over the sand.","جولات في العرق وغروب الشمس فوق الرمال."],"Ancien ksar en ruine sur un rocher près de Timimoun":["Ancient ruined ksar on a rock near Timimoun","قصر قديم مهدّم فوق صخرة قرب تيميمون"],"Les ksour":["The ksour","القصور"],"Les villages fortifiés en terre rouge, qui donnent son nom à l'oasis rouge.":["The fortified red earth villages that give the red oasis its name.","القرى المحصّنة من الطين الأحمر التي منحت الواحة الحمراء اسمها."],"Visiteur en chèche jaune à l'entrée d'une grotte de grès rouge":["Visitor in a yellow chèche at the entrance of a red sandstone cave","زائر بعمامة صفراء عند مدخل كهف من الحجر الرملي الأحمر"],"Les grottes":["The caves","الكهوف"],"Les grottes de grès rouge et les rochers sculptés par le vent.":["Red sandstone caves and rocks sculpted by the wind.","كهوف من الحجر الرملي الأحمر وصخور نحتتها الرياح."],"Chèches et foulards colorés vendus dans une grotte":["Colourful chèches and scarves sold in a cave","عمائم وأوشحة ملوّنة تُباع داخل كهف"],"La culture":["Culture","الثقافة"],"Chèches, artisanat et rencontres avec les habitants du Gourara.":["Chèches, crafts and meeting the people of the Gourara.","العمائم والحِرَف التقليدية ولقاء سكان قورارة."],"Repas sous la khaïma de Ledhas":["Meal under the Ledhas khaima","وجبة تحت خيمة لدهاس"],"La gastronomie":["Local cuisine","المطبخ المحلي"],"La cuisine du Sud, servie sous la khaïma, sur commande.":["Southern cuisine, served under the khaima, on order.","مأكولات الجنوب، تُقدَّم تحت الخيمة حسب الطلب."],"Soirée musicale avec oud dans la cour de Ledhas":["Musical evening with an oud in the Ledhas courtyard","سهرة موسيقية بالعود في فناء لدهاس"],"La musique":["Music","الموسيقى"],"Oud et chants du Gourara, le soir dans la cour du gîte.":["Oud and songs of the Gourara, in the evening in the courtyard.","العود وأغاني قورارة، مساءً في فناء النُزُل."],"L'eau qui coule dans une foggara":["Water flowing in a foggara","الماء يجري في فقارة"],"Les foggaras":["The foggaras","الفقارات"],"Le génie de l'oasis : des galeries creusées sous le sable qui amènent l'eau jusqu'aux jardins, et la partagent entre les familles. À voir couler de près, à quelques pas de la palmeraie.":["The genius of the oasis: tunnels dug under the sand that bring water to the gardens and share it between families. See it flowing up close, a few steps from the palm grove.","عبقرية الواحة: أنفاق محفورة تحت الرمال تجلب الماء إلى البساتين وتوزّعه بين العائلات. شاهدوه يجري عن قرب، على بُعد خطوات من واحة النخيل."],"Nouveau":["New","جديد"],"Le quad dans les dunes, une première à Timimoun":["Quad biking in the dunes, a first in Timimoun","الكواد في الكثبان، لأول مرة في تيميمون"],"Partez en quad sur les grandes dunes de Timimoun et arrêtez-vous sur la crête pour le coucher du soleil.":["Ride a quad across the great dunes of Timimoun and stop on the crest for the sunset.","انطلقوا على دراجات الكواد فوق كثبان تيميمون الكبرى وتوقّفوا على القمة لمشاهدة الغروب."],"Réserver une sortie en quad":["Book a quad ride","احجز جولة كواد"],"Voir les vidéos":["Watch the videos","شاهد الفيديوهات"],"Quatre quads alignés sur une dune au coucher du soleil":["Four quads lined up on a dune at sunset","أربع دراجات كواد مصطفّة على كثيب عند الغروب"],"Sur la crête, au coucher du soleil":["On the crest, at sunset","على القمة، عند الغروب"],"Groupe en quad saluant sur les dunes":["Group on quads waving on the dunes","مجموعة على دراجات الكواد تلوّح فوق الكثبان"],"Le groupe au sommet":["The group at the top","المجموعة على القمة"],"Deux participants à côté d'un quad, face aux dunes":["Two participants next to a quad, facing the dunes","مشاركان بجانب دراجة كواد في مواجهة الكثبان"],"Cap sur les dunes":["Heading for the dunes","نحو الكثبان"],"Pause sur la dune avec vue sur l'oasis de Timimoun":["Break on the dune overlooking the Timimoun oasis","استراحة على الكثيب مع إطلالة على واحة تيميمون"],"La pause, face à l'oasis":["The break, facing the oasis","استراحة أمام الواحة"],"Départ en quad devant un mur rouge et un palmier":["Quad departure in front of a red wall and a palm tree","الانطلاق بالكواد أمام جدار أحمر ونخلة"],"Prêt à partir":["Ready to go","جاهز للانطلاق"],"En vidéo":["On video","بالفيديو"],"1er Novembre 2026":["1 November 2026","أول نوفمبر 2026"],"Sortie en quad à Timimoun pour le 1er Novembre":["Quad outing in Timimoun for 1 November","خرجة بالكواد في تيميمون بمناسبة أول نوفمبر"],"Aventure, découverte et fierté nationale dans l'oasis rouge, pour l'anniversaire du déclenchement de la Révolution de 1954.":["Adventure, discovery and national pride in the red oasis, for the anniversary of the outbreak of the 1954 Revolution.","مغامرة واكتشاف وفخر وطني في الواحة الحمراء، في ذكرى اندلاع ثورة 1954."],"Canal Algérie · 28 octobre 2026":["Canal Algérie · 28 October 2026","كنال ألجيري · 28 أكتوبر 2026"],"Randonnée en quad à Timimoun":["Quad trek in Timimoun","جولة بالكواد في تيميمون"],"En marge du festival, les participants partent à l'aventure et découvrent la beauté de l'oasis rouge.":["On the sidelines of the festival, participants set off on an adventure and discover the beauty of the red oasis.","على هامش المهرجان، ينطلق المشاركون في مغامرة ويكتشفون جمال الواحة الحمراء."],"Préparation du thé au coucher du soleil":["Tea being prepared at sunset","تحضير الشاي عند الغروب"],"Le thé, au coucher du soleil":["Tea at sunset","الشاي عند الغروب"],"L'accueil":["Welcome","الضيافة"],"Le thé, versé de haut, face au désert":["Tea, poured from up high, facing the desert","الشاي يُسكب من الأعلى في مواجهة الصحراء"],"À Ledhas, la journée se termine en haut, sur un tapis, avec le thé préparé à l'ancienne pendant que le soleil descend sur la palmeraie.":["At Ledhas, the day ends up on the roof, on a rug, with tea made the traditional way while the sun sets over the palm grove.","في لدهاس، ينتهي اليوم فوق السطح على زربية، مع شاي يُحضَّر على الطريقة التقليدية بينما تغرب الشمس فوق واحة النخيل."],"Mettre la vidéo en pause":["Pause the video","إيقاف الفيديو مؤقتًا"],"Lire la vidéo":["Play the video","تشغيل الفيديو"],"Au coucher du soleil":["At sunset","عند الغروب"],"Évasions thématiques et team building":["Themed getaways and team building","رحلات موضوعية وبناء الفريق"],"Des séjours construits autour d'un thème, pour un groupe d'amis ou une équipe. Dites-nous ce que vous cherchez, on prépare le programme.":["Stays built around a theme, for a group of friends or a team. Tell us what you are looking for and we will plan the programme.","إقامات مبنية حول موضوع معيّن، لمجموعة أصدقاء أو لفريق عمل. أخبرونا بما تبحثون عنه وسنُعدّ لكم البرنامج."],"Balade à dos de dromadaire près de la palmeraie":["Camel ride near the palm grove","جولة على ظهر الجمل قرب واحة النخيل"],"Évasions thématiques":["Themed getaways","رحلات موضوعية"],"Un séjour à Timimoun organisé autour d'une envie : le désert, les ksour, la culture ou la musique.":["A stay in Timimoun built around one wish: the desert, the ksour, culture or music.","إقامة في تيميمون حول رغبة واحدة: الصحراء أو القصور أو الثقافة أو الموسيقى."],"Dunes":["Dunes","الكثبان"],"Ksour":["Ksour","القصور"],"Grottes":["Caves","الكهوف"],"Gastronomie":["Local cuisine","المطبخ المحلي"],"Musique":["Music","الموسيقى"],"Demander un programme":["Ask for a programme","اطلب برنامجًا"],"Groupe en randonnée sur les rochers au coucher du soleil":["Group hiking on the rocks at sunset","مجموعة تتنزّه بين الصخور عند الغروب"],"Sortez votre équipe du bureau : activités dans le désert, temps ensemble et soirées au gîte.":["Take your team out of the office: desert activities, time together and evenings at the guesthouse.","أخرجوا فريقكم من المكتب: أنشطة في الصحراء، ووقت معًا، وسهرات في النُزُل."],"Entreprises":["Companies","الشركات"],"Groupes":["Groups","المجموعات"],"Programme sur mesure":["Tailor-made programme","برنامج حسب الطلب"],"Demander un devis":["Ask for a quote","اطلب عرض سعر"],"Bientôt à Ledhas":["Coming soon at Ledhas","قريبًا في لدهاس"],"Les prochaines dates seront annoncées très bientôt. Demandez à être prévenu sur WhatsApp.":["Upcoming dates will be announced very soon. Ask to be notified on WhatsApp.","سنعلن عن المواعيد القادمة قريبًا جدًا. اطلبوا أن نُعلمكم عبر واتساب."],"Soirée musicale dans la cour de Ledhas":["Musical evening in the Ledhas courtyard","سهرة موسيقية في فناء لدهاس"],"Bientôt":["Soon","قريبًا"],"Soirée musicale sous les étoiles":["Musical evening under the stars","سهرة موسيقية تحت النجوم"],"Date bientôt annoncée":["Date to be announced","سيُعلن عن الموعد قريبًا"],"Musique du Gourara, dîner et nuit au gîte.":["Music of the Gourara, dinner and a night at the guesthouse.","موسيقى قورارة وعشاء وليلة في النُزُل."],"Me prévenir":["Notify me","أعلموني"],"Rocher sculpté par le vent dans le désert de Timimoun":["Wind-sculpted rock in the Timimoun desert","صخرة نحتتها الرياح في صحراء تيميمون"],"Évasion dans les dunes":["Dune getaway","رحلة في الكثبان"],"Un séjour thématique : dunes, ksour et coucher de soleil.":["A themed stay: dunes, ksour and sunset.","إقامة موضوعية: كثبان وقصور وغروب."],"Pause au sommet d'une falaise de grès rouge":["Break at the top of a red sandstone cliff","استراحة فوق جرف من الحجر الرملي الأحمر"],"Team building au désert":["Team building in the desert","بناء الفريق في الصحراء"],"Une journée d'activités pour les équipes et les entreprises.":["A day of activities for teams and companies.","يوم من الأنشطة للفرق والشركات."],"La nuit":["Night","الليل"],"Le soir, la musique":["In the evening, music","في المساء، الموسيقى"],"Les soirées musicales de Ledhas, sous le ciel étoilé de Timimoun, pour finir la journée ensemble.":["Ledhas musical evenings, under the starry sky of Timimoun, to end the day together.","سهرات لدهاس الموسيقية تحت سماء تيميمون المرصّعة بالنجوم، لنختم اليوم معًا."],"Réserver votre séjour":["Book your stay","احجز إقامتك"],"Remplissez ces quelques lignes. Votre demande s'ouvre dans WhatsApp, prête à être envoyée.":["Fill in these few lines. Your request opens in WhatsApp, ready to send.","املأ هذه الخانات القليلة، وسيُفتح طلبك في واتساب جاهزًا للإرسال."],"Nom complet":["Full name","الاسم الكامل"],"Votre nom":["Your name","اسمك"],"Date d’arrivée":["Arrival date","تاريخ الوصول"],"Date de départ":["Departure date","تاريخ المغادرة"],"Adultes":["Adults","البالغون"],"Enfants":["Children","الأطفال"],"Type de chambre":["Room type","نوع الغرفة"],"Chambre double":["Double room","غرفة ثنائية"],"Chambre triple":["Triple room","غرفة ثلاثية"],"Chambre quadruple":["Quadruple room","غرفة رباعية"],"Non":["No","لا"],"Oui, 1 matelas":["Yes, 1 mattress","نعم، فراش واحد"],"Oui, 2 matelas":["Yes, 2 mattresses","نعم، فراشان"],"Petit-déjeuner inclus":["Breakfast included","فطور الصباح مشمول"],"Demi-pension":["Half board","نصف إقامة"],"Pension complète":["Full board","إقامة كاملة"],"Activité":["Activity","النشاط"],"Séjour au gîte":["Stay at the guesthouse","إقامة في النُزُل"],"Sortie en quad":["Quad ride","جولة كواد"],"Évasion thématique":["Themed getaway","رحلة موضوعية"],"Soirée musicale":["Musical evening","سهرة موسيقية"],"Message":["Message","رسالة"],"Âge des enfants, une précision, une question…":["Children's ages, a detail, a question…","أعمار الأطفال، ملاحظة، سؤال…"],"Envoyer la demande sur WhatsApp":["Send the request on WhatsApp","أرسل الطلب عبر واتساب"],"Adresse":["Address","العنوان"],"Massine, Timimoun, Algérie":["Massine, Timimoun, Algeria","ماسين، تيميمون، الجزائر"],"Coordonnées":["GPS coordinates","الإحداثيات"],"Ouvrir dans Google Maps →":["Open in Google Maps →","افتح في خرائط Google ←"],"Copier":["Copy","نسخ"],"Copié":["Copied","تم النسخ"],"Sélectionné":["Selected","تم التحديد"],"Double, triple ou quadruple. Matelas supplémentaire possible.":["Double, triple or quadruple. Extra mattress available.","ثنائية أو ثلاثية أو رباعية. يمكن إضافة فراش إضافي."],"Repas":["Meals","الوجبات"],"Petit-déjeuner inclus. Demi-pension ou pension complète sur demande.":["Breakfast included. Half board or full board on request.","فطور الصباح مشمول. نصف إقامة أو إقامة كاملة عند الطلب."],"Sur demande, selon la saison et la formule.":["On request, depending on the season and the package.","عند الطلب، حسب الموسم والصيغة المختارة."],"Lieu de joie, de spectacle et de vie":["A place of joy, shows and life","مكان للفرح والعروض والحياة"],"© 2026 Ledhas · Massine, Timimoun":["© 2026 Ledhas · Massine, Timimoun","© 2026 لدهاس · ماسين، تيميمون"],"Site réalisé par":["Website by","تصميم الموقع:"],"Aube":["Dawn","الفجر"],"Matin":["Morning","الصباح"],"Après-midi":["Afternoon","بعد الظهر"],"Coucher du soleil":["Sunset","الغروب"],"Nuit":["Night","الليل"],"La date de départ doit être après la date d’arrivée.":["The departure date must be after the arrival date.","يجب أن يكون تاريخ المغادرة بعد تاريخ الوصول."]};
+  var DYN = {"fr":{"title":"Ledhas · Gîte à Timimoun","hello":"Bonjour Ledhas, je souhaite des informations sur un séjour au gîte.","quad":"Bonjour Ledhas, je souhaite réserver une sortie en quad dans les dunes.","notify":"Bonjour Ledhas, prévenez-moi pour {e}.","ev_soiree":"la prochaine soirée musicale","ev_dunes":"la prochaine évasion dans les dunes","ev_team":"le prochain team building","book":"Bonjour Ledhas, je souhaite faire une demande de réservation.","sep":" : ","l_name":"Nom","l_arr":"Arrivée","l_dep":"Départ","l_nights":"Nuits","l_ad":"Adultes","l_ch":"Enfants","l_room":"Chambre","l_mat":"Matelas supplémentaire","l_board":"Pension","l_act":"Activité","l_msg":"Message","n1":"1 nuit","nN":"{n} nuits"},"en":{"title":"Ledhas · Guesthouse in Timimoun","hello":"Hello Ledhas, I would like information about a stay at the guesthouse.","quad":"Hello Ledhas, I would like to book a quad ride in the dunes.","notify":"Hello Ledhas, please let me know about {e}.","ev_soiree":"the next musical evening","ev_dunes":"the next dune getaway","ev_team":"the next team building day","book":"Hello Ledhas, I would like to make a booking request.","sep":": ","l_name":"Name","l_arr":"Arrival","l_dep":"Departure","l_nights":"Nights","l_ad":"Adults","l_ch":"Children","l_room":"Room","l_mat":"Extra mattress","l_board":"Meal plan","l_act":"Activity","l_msg":"Message","n1":"1 night","nN":"{n} nights"},"ar":{"title":"لدهاس · نُزُل في تيميمون","hello":"مرحبًا لدهاس، أرغب في معلومات حول الإقامة في النُزُل.","quad":"مرحبًا لدهاس، أرغب في حجز جولة كواد في الكثبان.","notify":"مرحبًا لدهاس، أعلموني بموعد {e}.","ev_soiree":"السهرة الموسيقية القادمة","ev_dunes":"رحلة الكثبان القادمة","ev_team":"يوم بناء الفريق القادم","book":"مرحبًا لدهاس، أرغب في تقديم طلب حجز.","sep":": ","l_name":"الاسم","l_arr":"الوصول","l_dep":"المغادرة","l_nights":"عدد الليالي","l_ad":"البالغون","l_ch":"الأطفال","l_room":"الغرفة","l_mat":"فراش إضافي","l_board":"الوجبات","l_act":"النشاط","l_msg":"رسالة","n1":"ليلة واحدة","n2":"ليلتان","nFew":"{n} ليالٍ","nN":"{n} ليلة"}};
+  var LANGS = ["fr","en","ar"], LANG = "fr", onLang = [];
+  function norm(t){ return t.replace(/\s+/g, " ").trim(); }
+  function tr(fr){ if(LANG === "fr") return fr; var e = DICT[fr]; return e ? e[LANG === "en" ? 0 : 1] : fr; }
+  function d(k){ return (DYN[LANG] && DYN[LANG][k] != null) ? DYN[LANG][k] : DYN.fr[k]; }
+  var SKIP = "script,style,svg,code,noscript,[data-dyn],[data-split]";
+  var textNodes = [];
+  (function collect(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var n;
+    while((n = w.nextNode())){
+      var k = norm(n.nodeValue);
+      if(!k || !DICT[k]) continue;
+      var pe = n.parentElement;
+      if(pe && pe.closest(SKIP)) continue;
+      var m = n.nodeValue.match(/^(\s*)[\s\S]*?(\s*)$/);
+      textNodes.push({ n: n, k: k, a: m[1], b: m[2] });
+    }
+  })();
+  var attrNodes = [];
+  ["alt","placeholder","aria-label","title"].forEach(function(at){
+    document.querySelectorAll("body [" + at + "]").forEach(function(el){
+      var k = norm(el.getAttribute(at));
+      if(DICT[k]) attrNodes.push({ el: el, at: at, k: k });
+    });
+  });
+  function applyLang(l){
+    LANG = LANGS.indexOf(l) > -1 ? l : "fr";
+    root.lang = LANG; root.dir = LANG === "ar" ? "rtl" : "ltr";
+    textNodes.forEach(function(t){ t.n.nodeValue = t.a + tr(t.k) + t.b; });
+    attrNodes.forEach(function(t){ t.el.setAttribute(t.at, tr(t.k)); });
+    document.title = d("title");
+    document.querySelectorAll(".lang [data-lang]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === LANG)); });
+    onLang.forEach(function(fn){ try{ fn(); }catch(e){} });
+  }
+  function pickLang(){
+    try{ var q = new URLSearchParams(location.search).get("lang"); if(LANGS.indexOf(q) > -1) return q; }catch(e){}
+    try{ var s = localStorage.getItem("ledhas-lang"); if(LANGS.indexOf(s) > -1) return s; }catch(e){}
+    var nl = ((navigator.languages && navigator.languages[0]) || navigator.language || "fr").toLowerCase();
+    if(nl.indexOf("ar") === 0) return "ar";
+    if(nl.indexOf("en") === 0) return "en";
+    return "fr";
+  }
+  document.querySelectorAll(".lang [data-lang]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var l = b.getAttribute("data-lang");
+      applyLang(l);
+      try{ localStorage.setItem("ledhas-lang", l); }catch(e){}
+      try{ var u = new URL(location.href); if(l === "fr") u.searchParams.delete("lang"); else u.searchParams.set("lang", l); history.replaceState(null, "", u.toString()); }catch(e){}
+      if(window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); }, 60);
+    });
+  });
+
   /* ---------- WhatsApp links ---------- */
   function waLink(text){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text); }
-  var hello = "Bonjour Ledhas, je souhaite des informations sur un séjour au gîte.";
-  document.querySelectorAll(".js-wa").forEach(function(a){ a.href = waLink(hello); });
+  function setLinks(){
+    document.querySelectorAll(".js-wa").forEach(function(a){ a.href = waLink(d("hello")); });
+    document.querySelectorAll(".js-quad").forEach(function(a){ a.href = waLink(d("quad")); });
+    document.querySelectorAll(".js-notify").forEach(function(a){
+      a.href = waLink(d("notify").replace("{e}", d("ev_" + a.getAttribute("data-event"))));
+    });
+  }
+  onLang.push(setLinks);
 
+  /* ---------- Formulaire de réservation ---------- */
   var form = document.getElementById("bookForm");
   var send = document.getElementById("waSend");
+  var errEl = document.getElementById("formError"), nightsEl = document.getElementById("nights");
   var f = function(id){ return document.getElementById(id); };
   function fmtDate(v){
     if(!v) return "";
     var p = v.split("-"); return p.length === 3 ? p[2] + "/" + p[1] + "/" + p[0] : v;
   }
+  function toDay(v){ var p = v.split("-"); return Date.UTC(+p[0], +p[1] - 1, +p[2]) / 864e5; }
+  function isoPlus(v, n){ var t = new Date((toDay(v) + n) * 864e5); return t.toISOString().slice(0, 10); }
+  function nights(){
+    var a = f("f-arrivee").value, b = f("f-depart").value;
+    if(!a || !b) return null;
+    return toDay(b) - toDay(a);
+  }
+  function nightsText(n){
+    if(LANG === "ar"){ if(n === 1) return d("n1"); if(n === 2) return d("n2"); if(n <= 10) return d("nFew").replace("{n}", n); return d("nN").replace("{n}", n); }
+    return n === 1 ? d("n1") : d("nN").replace("{n}", n);
+  }
+  function optText(id){ var s = f(id); return s.options[s.selectedIndex] ? s.options[s.selectedIndex].text : ""; }
+  function intVal(id, min){ var v = parseInt(f(id).value, 10); return isNaN(v) ? min : Math.max(min, v); }
+  function invalid(){ var n = nights(); return n !== null && n < 1; }
   function buildMessage(){
-    var lines = ["Bonjour Ledhas, je souhaite faire une demande de réservation."];
-    var nom = f("f-nom").value.trim();
-    if(nom) lines.push("Nom : " + nom);
-    if(f("f-arrivee").value) lines.push("Arrivée : " + fmtDate(f("f-arrivee").value));
-    if(f("f-nuits").value) lines.push("Nuits : " + f("f-nuits").value);
-    if(f("f-pers").value) lines.push("Personnes : " + f("f-pers").value);
-    lines.push("Formule : " + f("f-formule").value);
-    var msg = f("f-msg").value.trim();
-    if(msg) lines.push("Message : " + msg);
+    var sep = d("sep"), lines = [d("book")];
+    function add(k, v){ if(v !== "" && v != null) lines.push(d(k) + sep + v); }
+    add("l_name", f("f-nom").value.trim());
+    add("l_arr", fmtDate(f("f-arrivee").value));
+    add("l_dep", fmtDate(f("f-depart").value));
+    var n = nights(); if(n && n > 0) add("l_nights", n);
+    add("l_ad", intVal("f-adultes", 1));
+    add("l_ch", intVal("f-enfants", 0));
+    add("l_room", optText("f-chambre"));
+    add("l_mat", optText("f-matelas"));
+    add("l_board", optText("f-pension"));
+    add("l_act", optText("f-formule"));
+    add("l_msg", f("f-msg").value.trim());
     return lines.join("\n");
   }
-  function refresh(){ send.href = waLink(buildMessage()); }
+  function refresh(){
+    var a = f("f-arrivee").value;
+    if(a){ f("f-depart").min = isoPlus(a, 1); }
+    var n = nights(), bad = invalid();
+    nightsEl.textContent = (n && n > 0) ? nightsText(n) : "";
+    errEl.hidden = !bad;
+    errEl.textContent = bad ? tr("La date de départ doit être après la date d’arrivée.") : "";
+    f("f-depart").setAttribute("aria-invalid", String(bad));
+    send.setAttribute("aria-disabled", String(bad));
+    send.href = waLink(buildMessage());
+  }
   form.addEventListener("input", refresh);
-  form.addEventListener("change", refresh);
+  form.addEventListener("change", function(e){
+    if(e.target && e.target.id === "f-arrivee"){
+      var a = f("f-arrivee").value, b = f("f-depart").value;
+      if(a && (!b || toDay(b) <= toDay(a))) f("f-depart").value = isoPlus(a, 1);
+    }
+    refresh();
+  });
   form.addEventListener("submit", function(e){ e.preventDefault(); });
+  send.addEventListener("click", function(e){
+    if(invalid()){ e.preventDefault(); refresh(); f("f-depart").focus(); }
+  });
   try{
-    var d = new Date(); var iso = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
-    f("f-arrivee").min = iso;
+    var dt = new Date(); var iso = dt.getFullYear() + "-" + String(dt.getMonth()+1).padStart(2,"0") + "-" + String(dt.getDate()).padStart(2,"0");
+    f("f-arrivee").min = iso; f("f-depart").min = isoPlus(iso, 1);
   }catch(e){}
-  refresh();
+  onLang.push(refresh);
+  applyLang(pickLang());
 
   var tv = document.getElementById("teaVideo"), tt = document.getElementById("teaToggle");
   function setTea(play){
-    if(play){ var p = tv.play(); if(p && p.catch) p.catch(function(){}); tt.textContent = "Mettre la vidéo en pause"; tt.setAttribute("aria-pressed","true"); }
-    else { tv.pause(); tt.textContent = "Lire la vidéo"; tt.setAttribute("aria-pressed","false"); }
+    if(play){ var p = tv.play(); if(p && p.catch) p.catch(function(){}); tt.textContent = tr("Mettre la vidéo en pause"); tt.setAttribute("aria-pressed","true"); }
+    else { tv.pause(); tt.textContent = tr("Lire la vidéo"); tt.setAttribute("aria-pressed","false"); }
   }
   if(reduce){ setTea(false); }
   else if("IntersectionObserver" in window){
     new IntersectionObserver(function(es){ es.forEach(function(e){ if(tt.getAttribute("aria-pressed")==="true"){ e.isIntersecting ? tv.play().catch(function(){}) : tv.pause(); } }); }, { threshold: .25 }).observe(tv);
   } else { setTea(true); }
   tt.addEventListener("click", function(){ setTea(tv.paused); });
+  function teaLabel(){ tt.textContent = tr(tt.getAttribute("aria-pressed") === "true" ? "Mettre la vidéo en pause" : "Lire la vidéo"); }
+  onLang.push(teaLabel); teaLabel();
 
-  document.querySelectorAll(".js-quad").forEach(function(a){
-    a.href = waLink("Bonjour Ledhas, je souhaite réserver une sortie en quad dans les dunes.");
-  });
-  document.querySelectorAll(".js-notify").forEach(function(a){
-    a.href = waLink("Bonjour Ledhas, prévenez-moi pour " + a.getAttribute("data-event") + ".");
-  });
   document.querySelectorAll(".ph img").forEach(function(img){
     function bad(){ img.classList.add("broken"); }
     if(img.complete && img.naturalWidth === 0) bad();
@@ -877,11 +1032,14 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     function selectIt(){
       try{ var r = document.createRange(); r.selectNodeContents(document.getElementById("numText")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }catch(e){}
     }
-    function done(label){ copyBtn.textContent = label; setTimeout(function(){ copyBtn.textContent = "Copier"; }, 1800); }
+    function done(label){ copyBtn.textContent = label; setTimeout(function(){ copyBtn.textContent = tr("Copier"); }, 1800); }
     if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(txt).then(function(){ done("Copié"); }, function(){ selectIt(); done("Sélectionné"); });
-    } else { selectIt(); done("Sélectionné"); }
+      navigator.clipboard.writeText(txt).then(function(){ done(tr("Copié")); }, function(){ selectIt(); done(tr("Sélectionné")); });
+    } else { selectIt(); done(tr("Sélectionné")); }
   });
+
+  function copyLabel(){ copyBtn.textContent = tr("Copier"); }
+  onLang.push(copyLabel); copyLabel();
 
   /* ---------- Smooth scroll (Lenis + GSAP) ---------- */
   var lenis = null;
@@ -928,8 +1086,14 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     gsap.fromTo(".hero-photo img", { scale: 1.35 }, { scale: 1.08, duration: 2.2, ease: "expo.out", delay: .35 });
 
     // Section titles: words slide up from behind a mask
+    function splitH(h){
+      h.innerHTML = tr(h.getAttribute("data-split")).split(/\s+/).map(function(w){ return '<span class="w"><span>' + w + '</span></span>'; }).join(" ");
+    }
+    onLang.push(function(){ document.querySelectorAll("main .band h2[data-split]").forEach(splitH); });
     document.querySelectorAll("main .band h2").forEach(function(h){
-      h.innerHTML = h.textContent.trim().split(/\s+/).map(function(w){ return '<span class="w"><span>' + w + '</span></span>'; }).join(" ");
+      var src = textNodes.filter(function(t){ return h.contains(t.n); }).map(function(t){ return t.k; }).join(" ") || norm(h.textContent);
+      h.setAttribute("data-split", src);
+      splitH(h);
       gsap.from(h.querySelectorAll(".w > span"), { yPercent: 110, duration: 1.05, ease: "power4.out", stagger: .05,
         scrollTrigger: { trigger: h, start: "top 88%", once: true } });
     });
@@ -1103,6 +1267,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
   }
 
   var lastNight = null, lastMin = -1;
+  onLang.push(function(){ lastMin = -1; });
   var timeEl = document.getElementById("clockTime"), labelEl = document.getElementById("clockLabel");
 
   function frame(t){
@@ -1178,7 +1343,7 @@ dialog#viewer img{display:block;max-width:100%;max-height:88vh;border-radius:14p
     if(minutes !== lastMin){
       lastMin = minutes;
       timeEl.textContent = String(Math.floor(minutes/60)).padStart(2,"0") + ":" + String(minutes%60).padStart(2,"0");
-      labelEl.textContent = LABELS[Math.min(4, Math.round(u))];
+      labelEl.textContent = tr(LABELS[Math.min(4, Math.round(u))]);
     }
     requestAnimationFrame(frame);
   }
