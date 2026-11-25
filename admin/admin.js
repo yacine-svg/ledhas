@@ -12,6 +12,8 @@
   var SB_KEY = String(CFG.supabaseAnonKey || '');
   var SITE_WA = String(CFG.whatsappNumber || '213550581196');
   var CONFIGURED = /^https:\/\/.+/.test(SB_URL) && SB_KEY.length > 20;
+  var DEMO_API = window.LEDHAS_DEMO;
+  var DEMO = !!DEMO_API && (!CONFIGURED || CFG.demo === true);
   var MAPS = 'https://maps.google.com/?q=29.285652,0.241852';
   var DAY = 864e5;
 
@@ -117,6 +119,7 @@
     if (d.length === 9 && /^[567]/.test(d)) return '213' + d;
     return d;
   }
+  function waTo(r) { return r && r.demo_seed ? '' : waNumber(r.phone); } // numéros fictifs de la démo : WhatsApp demande de choisir le contact
   function phoneKey(p) { var w = waNumber(p); return w.slice(-9); }
 
   /* ======================================================================
@@ -186,6 +189,8 @@
     events: function (id) { return api('/rest/v1/reservation_events?select=*&reservation_id=eq.' + id + '&order=at.desc&limit=200'); },
     logContact: function (id, detail) { return api('/rest/v1/reservation_events', { method: 'POST', body: { reservation_id: id, actor: session.user.id, kind: 'contact', detail: detail } }); }
   };
+
+  if (DEMO) db = DEMO_API.db;
 
   /* ======================================================================
      State
@@ -284,7 +289,8 @@
         '<label class="field"><span>Mot de passe</span><input class="input" name="password" type="password" autocomplete="current-password" required></label>' +
         (msg ? '<p class="' + (msg.ok ? 'ok-text' : 'error-text') + '" role="alert">' + esc(msg.text) + '</p>' : '') +
         '<button class="btn btn-primary btn-lg" type="submit">' + icon('login') + 'Se connecter</button>' +
-        '<button class="link-btn" type="button" data-act="to-reset">Mot de passe oublié ?</button></form>';
+        '<button class="link-btn" type="button" data-act="to-reset">Mot de passe oublié ?</button>' +
+        (DEMO ? '<button class="notice demo-note" type="button" data-act="fill-demo">' + icon('info') + '<span><b>Mode démonstration</b> : réservations fictives, gardées dans ce navigateur.<br>Compte : <code>' + DEMO_API.email + '</code> · mot de passe <code>' + DEMO_API.password + '</code><br><u>Remplir automatiquement</u></span></button>' : '') + '</form>';
     }
     app.innerHTML = '<div class="login">' + loginSide() + '<div class="login-main"><div class="login-card">' + loginBrand() + body +
       '<a class="muted" href="/" style="font-size:13px">← Retour au site</a></div></div></div>';
@@ -324,7 +330,7 @@
   function renderApp() {
     var nb = newCount();
     document.title = (nb ? '(' + nb + ') ' : '') + 'Ledhas · Gestion';
-    var side = '<aside class="sidebar' + (S.sbOpen ? ' open' : '') + '" aria-label="Navigation"><div class="sb-brand"><img src="/logo/ledhas-logo-320.webp" alt=""><div><strong>Ledhas</strong><span>Gestion du gîte</span></div></div>';
+    var side = '<aside class="sidebar' + (S.sbOpen ? ' open' : '') + '" aria-label="Navigation"><div class="sb-brand"><img src="/logo/ledhas-logo-320.webp" alt=""><div><strong>Ledhas</strong><span>Gestion du gîte</span></div>' + (DEMO ? '<span class="sb-env" title="Données fictives">DÉMO</span>' : '') + '</div>';
     NAV.forEach(function (g) {
       side += '<div class="sb-group">' + (g.label ? '<div class="sb-label">' + esc(g.label) + '</div>' : '');
       g.items.forEach(function (it) {
@@ -332,7 +338,7 @@
       });
       side += '</div>';
     });
-    side += '<div class="sb-foot"><a class="sb-link" href="/" target="_blank" rel="noopener">' + icon('external') + '<span>Voir le site</span></a>' +
+    side += '<div class="sb-foot">' + (DEMO ? '<button class="sb-link" type="button" data-act="demo-reset">' + icon('refresh') + '<span>Réinitialiser la démo</span></button>' : '') + '<a class="sb-link" href="/" target="_blank" rel="noopener">' + icon('external') + '<span>Voir le site</span></a>' +
       '<div class="user-chip"><span class="avatar">' + esc(initials(S.me && S.me.name)) + '</span><div style="min-width:0"><div class="u-name ellipsis">' + esc(S.me && S.me.name) + '</div><div class="u-role ellipsis">' + esc(session && session.user.email) + '</div></div>' +
       '<button class="btn btn-ghost btn-icon btn-sm" type="button" data-act="logout" title="Se déconnecter" aria-label="Se déconnecter">' + icon('logout') + '</button></div></div></aside>';
 
@@ -574,7 +580,7 @@
       return '<tr data-open="' + c.lastRes.id + '" tabindex="0"><td data-c="client"><div class="cell-main">' + esc(c.name) + ' ' + langTag(c.lang) + (c.stays > 1 ? ' <span class="pill plain" data-tone="clay">' + icon('star') + ' Fidèle</span>' : '') + '</div><div class="cell-sub mono">' + esc(c.phone) + (c.email ? ' · ' + esc(c.email) : '') + '</div></td>' +
         '<td data-c="people"><div class="cell-main">' + c.stays + ' séjour' + (c.stays > 1 ? 's' : '') + '</div><div class="cell-sub">' + c.nights + ' nuit' + (c.nights > 1 ? 's' : '') + (c.cancelled ? ' · ' + c.cancelled + ' annulé(s)' : '') + '</div></td>' +
         '<td data-c="stay"><div class="cell-main">' + esc(dayLabel(c.last)) + '</div><div class="cell-sub">' + esc(STATUS[c.lastRes.status].label) + '</div></td>' +
-        '<td data-c="status"><a class="btn btn-wa btn-sm" href="https://wa.me/' + waNumber(c.phone) + '" target="_blank" rel="noopener" data-stop>' + icon('wa') + 'WhatsApp</a></td></tr>';
+        '<td data-c="status"><a class="btn btn-wa btn-sm" href="https://wa.me/' + waTo(c.lastRes) + '" target="_blank" rel="noopener" data-stop>' + icon('wa') + 'WhatsApp</a></td></tr>';
     }).join('') + '</tbody></table></div><div class="list-foot">' + rows.length + ' client' + (rows.length > 1 ? 's' : '') + '</div>' : empty(S.list.length ? 'Aucun client ne correspond' : 'Pas encore de clients', '', 'users');
     return '<div class="app-head"><div><h1>Clients</h1><p>Regroupés par numéro de téléphone, avec leur historique de séjours.</p></div><button class="btn" type="button" data-act="export-clients">' + icon('download') + 'Exporter (CSV)</button></div>' +
       '<section class="panel"><div class="filterbar"><label class="input-icon">' + icon('search') + '<span class="sr-only">Rechercher un client</span><input class="input" id="clientSearch" type="search" placeholder="Nom ou téléphone…" value="' + esc(S.clientsQ) + '"></label></div>' + table + '</section>';
@@ -670,7 +676,7 @@
         '<div class="card"><div class="card-title">Contact</div><div class="contact-line"><span class="mono">' + esc(r.phone) + '</span><button class="btn btn-ghost btn-icon btn-sm" type="button" data-copy="' + esc(r.phone) + '" title="Copier" aria-label="Copier le numéro">' + icon('copy') + '</button>' + (r.email ? '<span class="muted">·</span><span>' + esc(r.email) + '</span>' : '') + '</div>' +
         '<div class="row"><div class="menu"><button class="btn btn-wa" type="button" data-act="wa-menu" aria-expanded="' + !!d.waMenu + '">' + icon('wa') + 'WhatsApp' + icon('chevron') + '</button>' +
         (d.waMenu ? '<div class="menu-list">' + TEMPLATES.map(function (t) { return '<button type="button" data-wa="' + t.k + '">' + esc(t.label) + '<small>' + esc(t.sub) + '</small></button>'; }).join('') + '</div>' : '') + '</div>' +
-        '<a class="btn" href="tel:' + esc(String(r.phone).replace(/[^\d+]/g, '')) + '" data-contact="call">' + icon('phone') + 'Appeler</a>' +
+        '<a class="btn" href="' + (r.demo_seed ? '#' : 'tel:' + esc(String(r.phone).replace(/[^\d+]/g, ''))) + '" data-contact="call"' + (r.demo_seed ? ' data-demo-call' : '') + '>' + icon('phone') + 'Appeler</a>' +
         (r.email ? '<a class="btn" href="mailto:' + esc(r.email) + '?subject=' + encodeURIComponent((T[r.lang] || T.fr).subject.replace('{ref}', r.ref)) + '&body=' + encodeURIComponent(buildTemplate(r, 'confirm')) + '" data-contact="email">' + icon('mail') + 'E-mail</a>' : '') + '</div></div>' +
         '<div class="card"><div class="card-title">Séjour</div><div class="stay-strip"><div class="d"><span>Arrivée</span><b>' + esc(dayLabel(r.arrival)) + '</b></div><span class="n">' + esc(nightsText(n)) + '</span><div class="d"><span>Départ</span><b>' + esc(dayLabel(r.departure)) + '</b></div></div>' +
         '<dl class="dl"><div><dt>Adultes</dt><dd>' + r.adults + '</dd></div><div><dt>Enfants</dt><dd>' + r.children + '</dd></div><div><dt>Matelas sup.</dt><dd>' + (r.extra_mattress || 'Non') + '</dd></div>' +
@@ -852,7 +858,13 @@
   });
 
   function boot() {
+    if (DEMO) {
+      if (session && session.access_token === 'demo') enterApp(); else { if (session) saveSession(null); S.view = 'login'; renderLogin(); }
+      window.addEventListener('storage', function (e) { if (S.view === 'app' && (e.key === DEMO_API.INBOX || e.key === DEMO_API.KEY)) load(true); });
+      return;
+    }
     if (!CONFIGURED) { S.view = 'config'; renderConfig(); return; }
+    if (session && session.access_token === 'demo') saveSession(null);
     // Lien « mot de passe oublié » : #access_token=…&type=recovery
     var hp = new URLSearchParams(location.hash.replace(/^#/, ''));
     if (hp.get('access_token') && hp.get('type') === 'recovery') {
@@ -874,6 +886,11 @@
       e.preventDefault();
       var email = form.elements.email.value.trim(), pw = form.elements.password.value, btn = form.querySelector('[type=submit]');
       if (!email || !pw) { renderLogin('login', { text: 'Saisissez votre adresse e-mail et votre mot de passe.' }); return; }
+      if (DEMO) {
+        var ds = DEMO_API.login(email, pw);
+        if (!ds) { renderLogin('login', { text: 'En mode démo, utilisez ' + DEMO_API.email + ' / ' + DEMO_API.password + '.' }); var dm = app.querySelector('[name=email]'); if (dm) dm.value = email; return; }
+        saveSession(ds); enterApp(); return;
+      }
       busy(btn, true);
       rawFetch('/auth/v1/token?grant_type=password', { method: 'POST', body: { email: email, password: pw } }).then(function (r) {
         if (!r.ok || !r.body || !r.body.access_token) { renderLogin('login', { text: errMessage(r.body, r.status) }); var em = app.querySelector('[name=email]'); if (em) em.value = email; return; }
@@ -882,6 +899,7 @@
     } else if (form.id === 'resetForm') {
       e.preventDefault();
       var em2 = form.elements.email.value.trim(); if (!em2) return;
+      if (DEMO) { renderLogin('reset', { text: 'Pas disponible en mode démo. Le compte de démonstration est ' + DEMO_API.email + ' / ' + DEMO_API.password + '.' }); return; }
       busy(form.querySelector('[type=submit]'), true);
       rawFetch('/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + location.pathname), { method: 'POST', body: { email: em2 } }).then(function (r) {
         renderLogin('reset', r.ok ? { ok: true, text: 'Si ce compte existe, un e-mail vient de lui être envoyé.' } : { text: errMessage(r.body, r.status) });
@@ -931,12 +949,13 @@
     if (t.hasAttribute('data-setstatus') && r) { setStatus(r, t.getAttribute('data-setstatus'), t); return; }
     if (t.hasAttribute('data-wa') && r) {
       var k = t.getAttribute('data-wa');
-      window.open('https://wa.me/' + waNumber(r.phone) + '?text=' + encodeURIComponent(buildTemplate(r, k)), '_blank', 'noopener');
+      window.open('https://wa.me/' + waTo(r) + '?text=' + encodeURIComponent(buildTemplate(r, k)), '_blank', 'noopener');
       S.drawer.waMenu = false; rerenderDrawer();
-      db.logContact(r.id, { channel: 'whatsapp', template: k }).then(function () { S.drawer && (S.drawer.events = null); }).catch(function () {});
+      db.logContact(r.id, { channel: 'whatsapp', template: k }).then(function () { if (S.drawer && S.drawer.id === r.id) { S.drawer.events = null; loadEvents(); } }).catch(function () {});
       return;
     }
-    if (t.hasAttribute('data-contact') && r) { db.logContact(r.id, { channel: t.getAttribute('data-contact') }).catch(function () {}); return; }
+    if (t.hasAttribute('data-demo-call')) { e.preventDefault(); toast('Numéro fictif (démo)', { sub: 'Sur une vraie réservation, ce bouton lance l’appel.' }); }
+    if (t.hasAttribute('data-contact') && r) { db.logContact(r.id, { channel: t.getAttribute('data-contact') }).then(function () { if (S.drawer && S.drawer.id === r.id) { S.drawer.events = null; loadEvents(); } }).catch(function () {}); return; }
     if (t.hasAttribute('data-copy')) {
       var txt = t.getAttribute('data-copy');
       (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { toast('Numéro copié'); }, function () { toast(txt, { sub: 'Copiez le numéro manuellement' }); });
@@ -945,10 +964,12 @@
 
     switch (act) {
       case 'to-reset': renderLogin('reset'); break;
+      case 'fill-demo': var fe = app.querySelector('[name=email]'), fp = app.querySelector('[name=password]'); if (fe) fe.value = DEMO_API.email; if (fp) fp.value = DEMO_API.password; break;
+      case 'demo-reset': DEMO_API.reset(); S.drawer = null; S.known = null; load(false).then(function () { renderApp(); toast('Démo réinitialisée', { sub: 'Les réservations fictives de départ sont revenues.' }); }); break;
       case 'to-login': renderLogin('login'); break;
       case 'logout':
         var tok = session && session.access_token;
-        if (tok) rawFetch('/auth/v1/logout', { method: 'POST', token: tok });
+        if (tok && !DEMO) rawFetch('/auth/v1/logout', { method: 'POST', token: tok });
         onSignedOut(); break;
       case 'sb-open': S.sbOpen = true; renderApp(); break;
       case 'sb-close': S.sbOpen = false; renderApp(); break;

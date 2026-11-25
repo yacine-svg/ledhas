@@ -23,6 +23,15 @@ Site statique (HTML, GSAP, Lenis) déployé sur Vercel, sans étape de build.
 Sécurité : le public ne peut ni lire ni modifier la base (RLS). Seuls les comptes listés
 dans la table `ledhas_admins` voient les réservations.
 
+## Mode démo (avant Supabase)
+
+Avec `demo: true` dans `config.js` (réglage actuel), `/admin/` fonctionne sans base de données :
+compte `demo@ledhas.dz` / `demo1234`, réservations fictives gardées dans le navigateur,
+bouton « Réinitialiser la démo » dans le menu. Les demandes envoyées depuis le formulaire
+du site, dans le même navigateur, apparaissent dans l'admin comme de vraies demandes.
+Sur les réservations fictives, WhatsApp demande de choisir le contact (aucun message ne
+part vers un numéro inventé).
+
 ## Mise en service (une seule fois)
 
 1. Créer un projet gratuit sur https://supabase.com (région : Europe, ex. Frankfurt).
@@ -39,7 +48,8 @@ dans la table `ledhas_admins` voient les réservations.
    (ou le domaine final) et ajouter `https://ledhas.vercel.app/admin/` aux Redirect URLs
    (pour « Mot de passe oublié »).
 6. **Project Settings → API** : copier la *Project URL* et la clé *anon public*
-   (ou *publishable*) dans `config.js` (ici et dans le dépôt `ledhas2`), puis déployer.
+   (ou *publishable*) dans `config.js` (ici et dans le dépôt `ledhas2`), mettre `demo: false`,
+   puis déployer.
 
 Pour ajouter un autre membre de l'équipe : refaire les étapes 3 et 4.
 
